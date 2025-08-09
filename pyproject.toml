@@ -80,11 +80,11 @@ Repository = "https://github.com/yourusername/NEXUS.git"
 "Source Code" = "https://github.com/yourusername/NEXUS"
 
 [project.scripts]
-nexus = "nexus.cli:main"
-nexus-launcher = "nexus.launcher:main"
+nexus = "nexus.cli.main:main"
+nexus-launcher = "nexus.cli.launcher:main"
 
 [tool.setuptools.packages.find]
-where = ["."]
+where = ["src"]
 include = ["nexus*"]
 exclude = ["tests*", "docs*"]
 
