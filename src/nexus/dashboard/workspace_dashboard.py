@@ -170,7 +170,7 @@ with col1:
     displays = get_display_info()
     if displays:
         for i, display in enumerate(displays):
-            with st.expander(f"Display {display['index']} ({display['frame']['width']}x{display['frame']['height']})"):
+            with st.expander(f"Display {display['index']} ({int(display['frame']['w'])}x{int(display['frame']['h'])})"):
                 st.json(display)
     else:
         st.warning("No display information available")

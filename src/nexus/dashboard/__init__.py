@@ -1,6 +1,6 @@
-"""Dashboard components."""
+"""Dashboard components.
 
-from .workspace_dashboard import WorkspaceDashboard
-from .interactive_dashboard import InteractiveDashboard
-
-__all__ = ["WorkspaceDashboard", "InteractiveDashboard"]
+These are Streamlit apps, not importable classes.
+Use: streamlit run src/nexus/dashboard/workspace_dashboard.py
+Use: streamlit run src/nexus/dashboard/interactive_dashboard.py
+"""

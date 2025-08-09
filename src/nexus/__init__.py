@@ -8,10 +8,7 @@ __author__ = "NEXUS Team"
 __email__ = "team@nexus-workspace.com"
 
 from .core import DynamicLayoutManager
-from .dashboard import WorkspaceDashboard, InteractiveDashboard
 
 __all__ = [
     "DynamicLayoutManager",
-    "WorkspaceDashboard", 
-    "InteractiveDashboard",
 ]

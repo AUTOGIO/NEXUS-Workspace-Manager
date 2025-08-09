@@ -27,6 +27,12 @@ show_main_menu() {
     echo "  2) Personal Profile (Entertainment & Social)"
     echo "  3) AI Research Profile (AI & ML Development)"
     echo "  4) Daily Routine (Default Setup)"
+    echo "  ${BLUE}--- New Profiles ---${NC}"
+    echo "  18) 🎨 Content Creation (Video, Design, Writing)"
+    echo "  19) 🎮 Gaming & Entertainment"
+    echo "  20) 📚 Learning & Education"
+    echo "  21) 💼 Business & Meetings"
+    echo "  22) 🎯 Focus & Deep Work"
     echo ""
     echo "${GREEN}🛠️  Management Tools${NC}"
     echo "  5) Interactive Workspace Manager"
@@ -35,6 +41,9 @@ show_main_menu() {
     echo "  8) AI Model Manager (Python)"
     echo "  9) Screen Time Data Collection"
     echo "  10) Activity Watch Integration"
+    echo "  ${BLUE}--- New Tools ---${NC}"
+    echo "  23) 🚀 Quick App Launcher"
+    echo "  24) 📊 System Performance Monitor"
     echo ""
     echo "${GREEN}📊 Dashboard & Monitoring${NC}"
     echo "  11) Classic Streamlit Dashboard"
@@ -52,7 +61,7 @@ show_main_menu() {
     echo "${GREEN}🚪 Exit${NC}"
     echo "  0) Exit"
     echo ""
-    echo -n "${YELLOW}Select an option (0-17): ${NC}"
+    echo -n "${YELLOW}Select an option (0-24): ${NC}"
 }
 
 # Function to show help
@@ -241,12 +250,12 @@ main() {
             11)
                 echo "${GREEN}📊 Starting Classic Dashboard...${NC}"
                 echo "${YELLOW}Opening dashboard at http://localhost:8501${NC}"
-                cd "$SCRIPT_DIR/dashboard" && streamlit run workspace_dashboard.py
+                cd "$SCRIPT_DIR" && python3 -m streamlit run src/nexus/dashboard/workspace_dashboard.py
                 ;;
             12)
                 echo "${GREEN}🧠 Starting NEXUS Interactive Dashboard...${NC}"
                 echo "${YELLOW}Opening Neural Workspace Intelligence at http://localhost:8502${NC}"
-                cd "$SCRIPT_DIR/dashboard" && streamlit run nexus_interactive_dashboard.py --server.port=8502
+                cd "$SCRIPT_DIR" && python3 -m streamlit run src/nexus/dashboard/interactive_dashboard.py --server.port=8502
                 ;;
             13)
                 check_system_status
@@ -262,6 +271,34 @@ main() {
                 ;;
             17)
                 show_about
+                ;;
+            18)
+                echo "${GREEN}🎨 Loading Content Creation Profile...${NC}"
+                source "$SCRIPT_DIR/configs/profiles/content_creation_profile.sh"
+                ;;
+            19)
+                echo "${GREEN}🎮 Loading Gaming Profile...${NC}"
+                source "$SCRIPT_DIR/configs/profiles/gaming_profile.sh"
+                ;;
+            20)
+                echo "${GREEN}📚 Loading Learning Profile...${NC}"
+                source "$SCRIPT_DIR/configs/profiles/learning_profile.sh"
+                ;;
+            21)
+                echo "${GREEN}💼 Loading Business Profile...${NC}"
+                source "$SCRIPT_DIR/configs/profiles/business_profile.sh"
+                ;;
+            22)
+                echo "${GREEN}🎯 Loading Focus Profile...${NC}"
+                source "$SCRIPT_DIR/configs/profiles/focus_profile.sh"
+                ;;
+            23)
+                echo "${GREEN}🚀 Starting Quick App Launcher...${NC}"
+                "$SCRIPT_DIR/scripts/quick_app_launcher.sh"
+                ;;
+            24)
+                echo "${GREEN}📊 Running System Performance Monitor...${NC}"
+                "$SCRIPT_DIR/scripts/system_performance_monitor.sh"
                 ;;
             0)
                 echo "${GREEN}👋 Goodbye!${NC}"

@@ -7,19 +7,19 @@ displays:
     id: 1
     name: "34' Curved Display (Main)"
     purpose: "Primary Development & Content"
-    apps: ["Cursor", "iTerm2", "Vivaldi", "Perplexity", "YouTube", "Safari", "Ollama", "LM Studio", "MLX"]
+    apps: ["Cursor", "iTerm", "Vivaldi", "Perplexity", "YouTube", "Safari", "Ollama", "LM Studio", "Wondershare Filmora Mac", "PhotoScapeX", "Google Chrome"]
     
   right:
     id: 2
     name: "iMac 24' Display"
     purpose: "Communication & Productivity"
-    apps: ["Obsidian", "Notes", "WhatsApp", "X", "Telegram", "Shortcuts"]
+    apps: ["Obsidian", "Notes", "WhatsApp", "X", "Telegram", "Microsoft Excel", "Pages", "Numbers", "One Thing"]
 
 # Always visible across all spaces and profiles
 always_visible_apps: ["ChatGPT", "Grok"]
 
 # Floating windows (never tiled)
-floating_apps: ["Finder", "iTerm2", "Terminal", "System Settings"]
+floating_apps: ["Finder", "iTerm", "Terminal", "System Settings", "One Thing", "Caffeine", "ActivityWatch", "iStatistica Pro", "iStatistica Sensors", "CleanMyMac_5_MAS", "Boom 3D", "Music"]
 
 # Workspace Profiles
 profiles:
