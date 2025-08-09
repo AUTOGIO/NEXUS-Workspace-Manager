@@ -1,0 +1,27 @@
+{
+  "timestamp": "2025-08-06T10:00:36.882573",
+  "current_profile": "work",
+  "displays": {
+    "left": {
+      "current_tool": "web_browser",
+      "layout": "bsp"
+    },
+    "center": {
+      "current_tool": null,
+      "layout": "bsp"
+    },
+    "right": {
+      "current_tool": null,
+      "layout": "bsp"
+    }
+  },
+  "layout_history": [
+    {
+      "timestamp": "2025-08-06T10:00:35.622229",
+      "display": "left",
+      "old_tool": null,
+      "new_tool": "web_browser",
+      "profile": "work"
+    }
+  ]
+}

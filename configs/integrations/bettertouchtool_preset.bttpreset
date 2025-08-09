@@ -1,0 +1,186 @@
+{
+  "BTTPresetVersion" : 3,
+  "CreationDate" : "2025-08-06T09:00:00Z",
+  "Creator" : "YABAI Workspace Manager",
+  "Name" : "YABAI Workspace Manager Preset",
+  "Version" : "3.0",
+  "Actions" : [
+    {
+      "BTTPredefinedActionType" : 86,
+      "BTTTriggerType" : 1,
+      "GestureData" : {
+        "GestureData" : "Three Finger Swipe Up",
+        "GestureData2" : 0
+      },
+      "ModifierFlags" : 0,
+      "TriggerConfig" : {
+        "TriggerOnAppDeactivate" : false,
+        "TriggerOnAppReactivate" : false,
+        "TriggerOnClick" : false,
+        "TriggerOnHold" : false,
+        "TriggerOnLongClick" : false,
+        "TriggerOnMiddleClick" : false,
+        "TriggerOnRightClick" : false,
+        "TriggerOnScroll" : false,
+        "TriggerOnSwipe" : true,
+        "TriggerOnTap" : false,
+        "TriggerOnTripleClick" : false
+      },
+      "TriggerType" : 1,
+      "UseBackground" : false,
+      "UseReturnValue" : false,
+      "VariableName" : "YABAI_MISSION_CONTROL"
+    },
+    {
+      "BTTPredefinedActionType" : 86,
+      "BTTTriggerType" : 1,
+      "GestureData" : {
+        "GestureData" : "Four Finger Tap",
+        "GestureData2" : 0
+      },
+      "ModifierFlags" : 0,
+      "TriggerConfig" : {
+        "TriggerOnAppDeactivate" : false,
+        "TriggerOnAppReactivate" : false,
+        "TriggerOnClick" : false,
+        "TriggerOnHold" : false,
+        "TriggerOnLongClick" : false,
+        "TriggerOnMiddleClick" : false,
+        "TriggerOnRightClick" : false,
+        "TriggerOnScroll" : false,
+        "TriggerOnSwipe" : false,
+        "TriggerOnTap" : true,
+        "TriggerOnTripleClick" : false
+      },
+      "TriggerType" : 1,
+      "UseBackground" : false,
+      "UseReturnValue" : false,
+      "VariableName" : "YABAI_ROTATE_LAYOUT"
+    },
+    {
+      "BTTPredefinedActionType" : 86,
+      "BTTTriggerType" : 1,
+      "GestureData" : {
+        "GestureData" : "Two Finger Swipe Left",
+        "GestureData2" : 0
+      },
+      "ModifierFlags" : 0,
+      "TriggerConfig" : {
+        "TriggerOnAppDeactivate" : false,
+        "TriggerOnAppReactivate" : false,
+        "TriggerOnClick" : false,
+        "TriggerOnHold" : false,
+        "TriggerOnLongClick" : false,
+        "TriggerOnMiddleClick" : false,
+        "TriggerOnRightClick" : false,
+        "TriggerOnScroll" : false,
+        "TriggerOnSwipe" : true,
+        "TriggerOnTap" : false,
+        "TriggerOnTripleClick" : false
+      },
+      "TriggerType" : 1,
+      "UseBackground" : false,
+      "UseReturnValue" : false,
+      "VariableName" : "YABAI_NEXT_DISPLAY"
+    },
+    {
+      "BTTPredefinedActionType" : 86,
+      "BTTTriggerType" : 1,
+      "GestureData" : {
+        "GestureData" : "Two Finger Swipe Right",
+        "GestureData2" : 0
+      },
+      "ModifierFlags" : 0,
+      "TriggerConfig" : {
+        "TriggerOnAppDeactivate" : false,
+        "TriggerOnAppReactivate" : false,
+        "TriggerOnClick" : false,
+        "TriggerOnHold" : false,
+        "TriggerOnLongClick" : false,
+        "TriggerOnMiddleClick" : false,
+        "TriggerOnRightClick" : false,
+        "TriggerOnScroll" : false,
+        "TriggerOnSwipe" : true,
+        "TriggerOnTap" : false,
+        "TriggerOnTripleClick" : false
+      },
+      "TriggerType" : 1,
+      "UseBackground" : false,
+      "UseReturnValue" : false,
+      "VariableName" : "YABAI_PREV_DISPLAY"
+    }
+  ],
+  "CustomActions" : [
+    {
+      "ActionName" : "YABAI - Mission Control",
+      "AppleScriptAction" : "tell application \"System Events\"\n    key code 160 using {control down}\nend tell",
+      "CreationDate" : "2025-08-06T09:00:00Z",
+      "ModificationDate" : "2025-08-06T09:00:00Z",
+      "UID" : "YABAI-MISSION-CONTROL"
+    },
+    {
+      "ActionName" : "YABAI - Rotate Layout",
+      "AppleScriptAction" : "do shell script \"yabai -m space --rotate 90\"",
+      "CreationDate" : "2025-08-06T09:00:00Z",
+      "ModificationDate" : "2025-08-06T09:00:00Z",
+      "UID" : "YABAI-ROTATE-LAYOUT"
+    },
+    {
+      "ActionName" : "YABAI - Next Display",
+      "AppleScriptAction" : "do shell script \"yabai -m window --display next\"",
+      "CreationDate" : "2025-08-06T09:00:00Z",
+      "ModificationDate" : "2025-08-06T09:00:00Z",
+      "UID" : "YABAI-NEXT-DISPLAY"
+    },
+    {
+      "ActionName" : "YABAI - Previous Display",
+      "AppleScriptAction" : "do shell script \"yabai -m window --display prev\"",
+      "CreationDate" : "2025-08-06T09:00:00Z",
+      "ModificationDate" : "2025-08-06T09:00:00Z",
+      "UID" : "YABAI-PREV-DISPLAY"
+    },
+    {
+      "ActionName" : "YABAI - Load Work Profile",
+      "AppleScriptAction" : "do shell script \"cd $HOME/Desktop/YABAI && source workspace_profiles/work_profile.sh\"",
+      "CreationDate" : "2025-08-06T09:00:00Z",
+      "ModificationDate" : "2025-08-06T09:00:00Z",
+      "UID" : "YABAI-LOAD-WORK"
+    },
+    {
+      "ActionName" : "YABAI - Load Personal Profile",
+      "AppleScriptAction" : "do shell script \"cd $HOME/Desktop/YABAI && source workspace_profiles/personal_profile.sh\"",
+      "CreationDate" : "2025-08-06T09:00:00Z",
+      "ModificationDate" : "2025-08-06T09:00:00Z",
+      "UID" : "YABAI-LOAD-PERSONAL"
+    },
+    {
+      "ActionName" : "YABAI - Load AI Research Profile",
+      "AppleScriptAction" : "do shell script \"cd $HOME/Desktop/YABAI && source workspace_profiles/ai_research_profile.sh\"",
+      "CreationDate" : "2025-08-06T09:00:00Z",
+      "ModificationDate" : "2025-08-06T09:00:00Z",
+      "UID" : "YABAI-LOAD-AI-RESEARCH"
+    }
+  ],
+  "GestureDefinitions" : [
+    {
+      "GestureData" : "Three Finger Swipe Up",
+      "GestureData2" : 0,
+      "GestureType" : 1
+    },
+    {
+      "GestureData" : "Four Finger Tap",
+      "GestureData2" : 0,
+      "GestureType" : 2
+    },
+    {
+      "GestureData" : "Two Finger Swipe Left",
+      "GestureData2" : 0,
+      "GestureType" : 1
+    },
+    {
+      "GestureData" : "Two Finger Swipe Right",
+      "GestureData2" : 0,
+      "GestureType" : 1
+    }
+  ]
+} 

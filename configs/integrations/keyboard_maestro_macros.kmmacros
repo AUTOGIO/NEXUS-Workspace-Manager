@@ -1,0 +1,199 @@
+{
+  "CreationDate" : 712345678.9,
+  "CreationDateString" : "2025-08-06T09:00:00Z",
+  "Creator" : "YABAI Workspace Manager",
+  "CreatorCode" : "YABAI",
+  "ExportDate" : 712345678.9,
+  "ExportDateString" : "2025-08-06T09:00:00Z",
+  "ExportedBy" : "YABAI Workspace Manager",
+  "ExportedFrom" : "YABAI Workspace Manager",
+  "Macros" : [
+    {
+      "CreationDate" : 712345678.9,
+      "CreationDateString" : "2025-08-06T09:00:00Z",
+      "ModificationDate" : 712345678.9,
+      "ModificationDateString" : "2025-08-06T09:00:00Z",
+      "Name" : "YABAI - Load Work Profile",
+      "Targeting" : "Included",
+      "TargetingApps" : [
+        {
+          "BundleIdentifier" : "com.apple.Terminal",
+          "Name" : "Terminal",
+          "Newest" : 1,
+          "UID" : "com.apple.Terminal"
+        }
+      ],
+      "Triggers" : [
+        {
+          "CreationDate" : 712345678.9,
+          "CreationDateString" : "2025-08-06T09:00:00Z",
+          "ModificationDate" : 712345678.9,
+          "ModificationDateString" : "2025-08-06T09:00:00Z",
+          "KeyCode" : 13,
+          "ModifierFlags" : 1835008,
+          "TriggerType" : "HotKey"
+        }
+      ],
+      "UID" : "YABAI-WORK-PROFILE",
+      "Variable" : {
+        "Name" : "YABAI_WORK_PROFILE"
+      },
+      "Actions" : [
+        {
+          "CreationDate" : 712345678.9,
+          "CreationDateString" : "2025-08-06T09:00:00Z",
+          "ModificationDate" : 712345678.9,
+          "ModificationDateString" : "2025-08-06T09:00:00Z",
+          "Action" : "ExecuteShellScript",
+          "ActionUID" : "YABAI-WORK-SCRIPT",
+          "Script" : "#!/bin/zsh\n\n# YABAI Work Profile Macro\n# Keyboard Maestro Integration\n\n# Get the YABAI project directory\nYABAI_DIR=\"$HOME/Desktop/YABAI\"\n\n# Check if YABAI is running\nif ! yabai -m query --displays >/dev/null 2>&1; then\n    echo \"Starting YABAI...\"\n    yabai --start-service\n    sleep 2\nfi\n\n# Load work profile\nif [ -f \"$YABAI_DIR/workspace_profiles/work_profile.sh\" ]; then\n    echo \"Loading Work Profile...\"\n    cd \"$YABAI_DIR\"\n    source \"workspace_profiles/work_profile.sh\"\n    echo \"✅ Work Profile loaded successfully!\"\nelse\n    echo \"❌ Work profile script not found at $YABAI_DIR/workspace_profiles/work_profile.sh\"\nfi",
+          "Shell" : "/bin/zsh",
+          "UseText" : false
+        }
+      ]
+    },
+    {
+      "CreationDate" : 712345678.9,
+      "CreationDateString" : "2025-08-06T09:00:00Z",
+      "ModificationDate" : 712345678.9,
+      "ModificationDateString" : "2025-08-06T09:00:00Z",
+      "Name" : "YABAI - Load Personal Profile",
+      "Targeting" : "Included",
+      "TargetingApps" : [
+        {
+          "BundleIdentifier" : "com.apple.Terminal",
+          "Name" : "Terminal",
+          "Newest" : 1,
+          "UID" : "com.apple.Terminal"
+        }
+      ],
+      "Triggers" : [
+        {
+          "CreationDate" : 712345678.9,
+          "CreationDateString" : "2025-08-06T09:00:00Z",
+          "ModificationDate" : 712345678.9,
+          "ModificationDateString" : "2025-08-06T09:00:00Z",
+          "KeyCode" : 35,
+          "ModifierFlags" : 1835008,
+          "TriggerType" : "HotKey"
+        }
+      ],
+      "UID" : "YABAI-PERSONAL-PROFILE",
+      "Variable" : {
+        "Name" : "YABAI_PERSONAL_PROFILE"
+      },
+      "Actions" : [
+        {
+          "CreationDate" : 712345678.9,
+          "CreationDateString" : "2025-08-06T09:00:00Z",
+          "ModificationDate" : 712345678.9,
+          "ModificationDateString" : "2025-08-06T09:00:00Z",
+          "Action" : "ExecuteShellScript",
+          "ActionUID" : "YABAI-PERSONAL-SCRIPT",
+          "Script" : "#!/bin/zsh\n\n# YABAI Personal Profile Macro\n# Keyboard Maestro Integration\n\n# Get the YABAI project directory\nYABAI_DIR=\"$HOME/Desktop/YABAI\"\n\n# Check if YABAI is running\nif ! yabai -m query --displays >/dev/null 2>&1; then\n    echo \"Starting YABAI...\"\n    yabai --start-service\n    sleep 2\nfi\n\n# Load personal profile\nif [ -f \"$YABAI_DIR/workspace_profiles/personal_profile.sh\" ]; then\n    echo \"Loading Personal Profile...\"\n    cd \"$YABAI_DIR\"\n    source \"workspace_profiles/personal_profile.sh\"\n    echo \"✅ Personal Profile loaded successfully!\"\nelse\n    echo \"❌ Personal profile script not found at $YABAI_DIR/workspace_profiles/personal_profile.sh\"\nfi",
+          "Shell" : "/bin/zsh",
+          "UseText" : false
+        }
+      ]
+    },
+    {
+      "CreationDate" : 712345678.9,
+      "CreationDateString" : "2025-08-06T09:00:00Z",
+      "ModificationDate" : 712345678.9,
+      "ModificationDateString" : "2025-08-06T09:00:00Z",
+      "Name" : "YABAI - Load AI Research Profile",
+      "Targeting" : "Included",
+      "TargetingApps" : [
+        {
+          "BundleIdentifier" : "com.apple.Terminal",
+          "Name" : "Terminal",
+          "Newest" : 1,
+          "UID" : "com.apple.Terminal"
+        }
+      ],
+      "Triggers" : [
+        {
+          "CreationDate" : 712345678.9,
+          "CreationDateString" : "2025-08-06T09:00:00Z",
+          "ModificationDate" : 712345678.9,
+          "ModificationDateString" : "2025-08-06T09:00:00Z",
+          "KeyCode" : 15,
+          "ModifierFlags" : 1835008,
+          "TriggerType" : "HotKey"
+        }
+      ],
+      "UID" : "YABAI-AI-RESEARCH-PROFILE",
+      "Variable" : {
+        "Name" : "YABAI_AI_RESEARCH_PROFILE"
+      },
+      "Actions" : [
+        {
+          "CreationDate" : 712345678.9,
+          "CreationDateString" : "2025-08-06T09:00:00Z",
+          "ModificationDate" : 712345678.9,
+          "ModificationDateString" : "2025-08-06T09:00:00Z",
+          "Action" : "ExecuteShellScript",
+          "ActionUID" : "YABAI-AI-RESEARCH-SCRIPT",
+          "Script" : "#!/bin/zsh\n\n# YABAI AI Research Profile Macro\n# Keyboard Maestro Integration\n\n# Get the YABAI project directory\nYABAI_DIR=\"$HOME/Desktop/YABAI\"\n\n# Check if YABAI is running\nif ! yabai -m query --displays >/dev/null 2>&1; then\n    echo \"Starting YABAI...\"\n    yabai --start-service\n    sleep 2\nfi\n\n# Load AI research profile\nif [ -f \"$YABAI_DIR/workspace_profiles/ai_research_profile.sh\" ]; then\n    echo \"Loading AI Research Profile...\"\n    cd \"$YABAI_DIR\"\n    source \"workspace_profiles/ai_research_profile.sh\"\n    echo \"✅ AI Research Profile loaded successfully!\"\nelse\n    echo \"❌ AI Research profile script not found at $YABAI_DIR/workspace_profiles/ai_research_profile.sh\"\nfi",
+          "Shell" : "/bin/zsh",
+          "UseText" : false
+        }
+      ]
+    },
+    {
+      "CreationDate" : 712345678.9,
+      "CreationDateString" : "2025-08-06T09:00:00Z",
+      "ModificationDate" : 712345678.9,
+      "ModificationDateString" : "2025-08-06T09:00:00Z",
+      "Name" : "YABAI - Quick Window Management",
+      "Targeting" : "Included",
+      "TargetingApps" : [
+        {
+          "BundleIdentifier" : "com.apple.Terminal",
+          "Name" : "Terminal",
+          "Newest" : 1,
+          "UID" : "com.apple.Terminal"
+        }
+      ],
+      "Triggers" : [
+        {
+          "CreationDate" : 712345678.9,
+          "CreationDateString" : "2025-08-06T09:00:00Z",
+          "ModificationDate" : 712345678.9,
+          "ModificationDateString" : "2025-08-06T09:00:00Z",
+          "KeyCode" : 49,
+          "ModifierFlags" : 1835008,
+          "TriggerType" : "HotKey"
+        }
+      ],
+      "UID" : "YABAI-QUICK-WINDOW-MANAGEMENT",
+      "Variable" : {
+        "Name" : "YABAI_QUICK_WINDOW_MANAGEMENT"
+      },
+      "Actions" : [
+        {
+          "CreationDate" : 712345678.9,
+          "CreationDateString" : "2025-08-06T09:00:00Z",
+          "ModificationDate" : 712345678.9,
+          "ModificationDateString" : "2025-08-06T09:00:00Z",
+          "Action" : "ExecuteShellScript",
+          "ActionUID" : "YABAI-QUICK-WINDOW-SCRIPT",
+          "Script" : "#!/bin/zsh\n\n# YABAI Quick Window Management\n# Keyboard Maestro Integration\n\n# Get current window info\nCURRENT_WINDOW=$(yabai -m query --windows --window 2>/dev/null)\n\nif [ $? -eq 0 ]; then\n    # Extract window info\n    WINDOW_ID=$(echo $CURRENT_WINDOW | jq -r '.id')\n    APP_NAME=$(echo $CURRENT_WINDOW | jq -r '.app')\n    DISPLAY=$(echo $CURRENT_WINDOW | jq -r '.display')\n    SPACE=$(echo $CURRENT_WINDOW | jq -r '.space')\n    \n    echo \"Current Window: $APP_NAME (ID: $WINDOW_ID)\"\n    echo \"Location: Display $DISPLAY, Space $SPACE\"\n    echo \"\"\n    echo \"Quick Actions:\"\n    echo \"1. Move to next display\"\n    echo \"2. Toggle float\"\n    echo \"3. Rotate layout\"\n    echo \"4. Focus ChatGPT\"\n    echo \"5. Focus Cursor\"\n    \n    # Example: Move to next display\n    NEXT_DISPLAY=$((DISPLAY % 3 + 1))\n    yabai -m window --display $NEXT_DISPLAY\n    echo \"✅ Moved $APP_NAME to Display $NEXT_DISPLAY\"\nelse\n    echo \"❌ No focused window found\"\nfi",
+          "Shell" : "/bin/zsh",
+          "UseText" : false
+        }
+      ]
+    }
+  ],
+  "Name" : "YABAI Workspace Manager Macros",
+  "Targeting" : "Included",
+  "TargetingApps" : [
+    {
+      "BundleIdentifier" : "com.apple.Terminal",
+      "Name" : "Terminal",
+      "Newest" : 1,
+      "UID" : "com.apple.Terminal"
+    }
+  ],
+  "Version" : 10
+} 

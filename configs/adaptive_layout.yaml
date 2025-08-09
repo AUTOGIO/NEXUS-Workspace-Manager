@@ -1,0 +1,57 @@
+# Dual Display Layout Configuration - User's Setup
+display_count: 2
+layout_strategy: "dual_focus"
+separated_spaces: true  # Desktop & Dock: 'Displays have separated Spaces - ON'
+
+displays:
+  center:
+    id: 1
+    name: "34' Curved Display (Main)"
+    purpose: "Primary Development & Content"
+    layout: "bsp"
+    apps: ["Cursor", "iTerm2", "Vivaldi", "Perplexity", "YouTube", "Safari", "Ollama", "LM Studio", "MLX"]
+    
+  right:
+    id: 2
+    name: "iMac 24' Display"
+    purpose: "Communication & Productivity"
+    layout: "bsp"
+    apps: ["Obsidian", "Notes", "WhatsApp", "X", "Telegram", "Shortcuts"]
+
+workspace_profiles:
+  work:
+    center_apps: ["Cursor", "iTerm2", "Vivaldi", "Perplexity"]
+    right_apps: ["Obsidian", "Notes", "Safari", "Shortcuts"]
+    
+  personal:
+    center_apps: ["YouTube", "Safari", "Vivaldi"]
+    right_apps: ["WhatsApp", "X", "Telegram", "Obsidian"]
+    
+  ai_research:
+    center_apps: ["Cursor", "Ollama", "LM Studio", "MLX", "Perplexity"]
+    right_apps: ["Obsidian"]
+
+# Always visible AI tools across all profiles
+always_visible:
+  - app: "ChatGPT"
+    sticky: true
+    manage: false
+  - app: "Grok"
+    sticky: true
+    manage: false
+
+# Floating windows (never managed by YABAI)
+floating_windows:
+  - "Finder"
+  - "iTerm2"
+  - "Terminal" 
+  - "System Settings"
+
+# YABAI Rules for Dual Display
+yabai_rules:
+  - "yabai -m rule --add app=\"Safari\" display=1"
+  - "yabai -m rule --add app=\"WhatsApp\" display=1"
+  - "yabai -m rule --add app=\"Slack\" display=1"
+  - "yabai -m rule --add app=\"Visual Studio Code\" display=2"
+  - "yabai -m rule --add app=\"Terminal\" display=2"
+  - "yabai -m rule --add app=\"ChatGPT\" display=2"

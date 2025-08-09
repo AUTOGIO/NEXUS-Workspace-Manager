@@ -1,0 +1,280 @@
+# Dynamic Layout Configuration for YABAI + N8N Workflows v2
+# Configuration for tool swapping and display management
+
+# Display Configuration
+displays:
+  left:
+    id: 1
+    name: "HZ30GAMER 30\""
+    purpose: "Browsers & Web Tools"
+    apps: ["Safari", "Vivaldi", "Chrome", "Firefox"]
+    preferred_tools: ["web_browser", "entertainment", "ai_chat"]
+    
+  center:
+    id: 2
+    name: "LG ULTRAWIDE 34\""
+    purpose: "AI & Development Tools"
+    apps: ["ChatGPT", "Grok", "VS Code", "Xcode", "Terminal"]
+    preferred_tools: ["code_editor", "ai_development", "n8n_dashboard"]
+    
+  right:
+    id: 3
+    name: "iMac 24\""
+    purpose: "Productivity & Communication"
+    apps: ["Obsidian", "WhatsApp", "X", "Slack", "Teams"]
+    preferred_tools: ["productivity", "communication", "n8n_monitoring"]
+
+# Tool Definitions
+tools:
+  # Development Tools
+  code_editor:
+    name: "Code Editor"
+    category: "development"
+    apps: ["Visual Studio Code", "Xcode", "PyCharm", "IntelliJ IDEA"]
+    description: "Code editing and development"
+    workspace_profile: "work"
+    display_preference: [2, 1]  # Center, Left
+    layout: "bsp"
+    launch_commands:
+      - "open -a 'Visual Studio Code'"
+      - "open -a 'Xcode'"
+    
+  terminal:
+    name: "Terminal"
+    category: "development"
+    apps: ["Terminal", "iTerm2", "Alacritty"]
+    description: "Command line interface"
+    workspace_profile: "work"
+    display_preference: [2, 3]  # Center, Right
+    layout: "bsp"
+    launch_commands:
+      - "open -a 'Terminal'"
+      - "open -a 'iTerm2'"
+    
+  # AI Tools
+  ai_chat:
+    name: "AI Chat"
+    category: "ai"
+    apps: ["ChatGPT", "Grok", "Claude", "Perplexity"]
+    description: "AI chat and assistance"
+    workspace_profile: "ai_research"
+    display_preference: [2, 1]  # Center, Left
+    layout: "stack"
+    launch_commands:
+      - "open -a 'Safari' --args 'https://chat.openai.com'"
+      - "open -a 'Safari' --args 'https://grok.x.ai'"
+    
+  ai_development:
+    name: "AI Development"
+    category: "ai"
+    apps: ["Ollama", "LM Studio", "MLX", "Jupyter Notebook"]
+    description: "AI model development and testing"
+    workspace_profile: "ai_research"
+    display_preference: [2, 3]  # Center, Right
+    layout: "bsp"
+    launch_commands:
+      - "open -a 'Terminal'"
+      - "ollama serve"
+    
+  # Productivity Tools
+  productivity:
+    name: "Productivity"
+    category: "productivity"
+    apps: ["Notion", "Obsidian", "Calendar", "Reminders"]
+    description: "Note-taking and productivity"
+    workspace_profile: "personal"
+    display_preference: [3, 1]  # Right, Left
+    layout: "stack"
+    launch_commands:
+      - "open -a 'Notion'"
+      - "open -a 'Obsidian'"
+    
+  communication:
+    name: "Communication"
+    category: "communication"
+    apps: ["WhatsApp", "Slack", "Teams", "X", "Telegram"]
+    description: "Communication and messaging"
+    workspace_profile: "personal"
+    display_preference: [3, 1]  # Right, Left
+    layout: "stack"
+    launch_commands:
+      - "open -a 'WhatsApp'"
+      - "open -a 'Slack'"
+    
+  # Web Tools
+  web_browser:
+    name: "Web Browser"
+    category: "web"
+    apps: ["Safari", "Chrome", "Firefox", "Vivaldi"]
+    description: "Web browsing and research"
+    workspace_profile: "work"
+    display_preference: [1, 2]  # Left, Center
+    layout: "bsp"
+    launch_commands:
+      - "open -a 'Safari'"
+      - "open -a 'Google Chrome'"
+    
+  # N8N Workflows v2 Tools
+  n8n_dashboard:
+    name: "N8N Dashboard"
+    category: "automation"
+    apps: ["Streamlit", "N8N"]
+    description: "N8N Workflows v2 dashboard"
+    workspace_profile: "work"
+    display_preference: [2, 3]  # Center, Right
+    layout: "bsp"
+    launch_commands:
+      - "streamlit run /Volumes/MICRO/Documents/Projects/N8N_Workflows_v2/src/integrations/streamlit/dashboard.py"
+      - "n8n start"
+    
+  n8n_monitoring:
+    name: "N8N Monitoring"
+    category: "automation"
+    apps: ["Performance Monitor", "Agent Status"]
+    description: "N8N Workflows v2 monitoring"
+    workspace_profile: "work"
+    display_preference: [3, 2]  # Right, Center
+    layout: "stack"
+    launch_commands:
+      - "streamlit run /Volumes/MICRO/Documents/Projects/N8N_Workflows_v2/src/integrations/monitoring/performance_monitor.py"
+    
+  # Entertainment Tools
+  entertainment:
+    name: "Entertainment"
+    category: "entertainment"
+    apps: ["Spotify", "Netflix", "YouTube", "Twitch"]
+    description: "Entertainment and media"
+    workspace_profile: "personal"
+    display_preference: [1, 3]  # Left, Right
+    layout: "float"
+    launch_commands:
+      - "open -a 'Spotify'"
+      - "open -a 'Safari' --args 'https://www.youtube.com'"
+
+# Profile Configurations
+profiles:
+  work:
+    name: "Work Profile"
+    description: "Development & Productivity Focus"
+    tools: ["code_editor", "terminal", "web_browser", "n8n_dashboard", "n8n_monitoring"]
+    display_mapping:
+      left: "web_browser"
+      center: "code_editor"
+      right: "n8n_monitoring"
+    
+  personal:
+    name: "Personal Profile"
+    description: "Entertainment & Social Focus"
+    tools: ["productivity", "communication", "entertainment", "ai_chat"]
+    display_mapping:
+      left: "entertainment"
+      center: "ai_chat"
+      right: "productivity"
+    
+  ai_research:
+    name: "AI Research Profile"
+    description: "AI Development & Model Management"
+    tools: ["ai_development", "ai_chat", "terminal", "n8n_dashboard"]
+    display_mapping:
+      left: "ai_chat"
+      center: "ai_development"
+      right: "n8n_dashboard"
+
+# Layout Optimization Settings
+layout_optimization:
+  # Automatic layout switching based on time
+  time_based_switching:
+    enabled: true
+    schedules:
+      work_hours:
+        days: [1, 2, 3, 4, 5]  # Monday to Friday
+        start_time: "09:00"
+        end_time: "17:00"
+        profile: "work"
+      
+      evening_hours:
+        days: [1, 2, 3, 4, 5, 6, 7]  # All days
+        start_time: "18:00"
+        end_time: "08:00"
+        profile: "personal"
+      
+      research_hours:
+        days: [1, 2, 3, 4, 5]  # Monday to Friday
+        start_time: "17:00"
+        end_time: "18:00"
+        profile: "ai_research"
+  
+  # Performance optimization
+  performance:
+    auto_save_layout: true
+    save_interval: 300  # 5 minutes
+    max_history_entries: 50
+    auto_restore_on_startup: true
+  
+  # YABAI integration
+  yabai_integration:
+    auto_balance: true
+    window_shadow: "float"
+    window_opacity: "off"
+    mouse_follows_focus: "off"
+    focus_follows_mouse: "off"
+
+# N8N Workflows v2 Integration
+n8n_integration:
+  enabled: true
+  dashboard_url: "http://localhost:8501"
+  monitoring_url: "http://localhost:8502"
+  n8n_url: "http://localhost:5678"
+  
+  # Auto-launch N8N tools when switching to work profile
+  auto_launch_n8n: true
+  
+  # Performance monitoring
+  monitor_neural_engine: true
+  monitor_memory_usage: true
+  monitor_thermal_status: true
+
+# Keyboard Shortcuts
+keyboard_shortcuts:
+  # Global shortcuts (using BetterTouchTool or similar)
+  swap_left_display: "cmd+shift+1"
+  swap_center_display: "cmd+shift+2"
+  swap_right_display: "cmd+shift+3"
+  
+  # Profile switching
+  switch_to_work: "cmd+shift+w"
+  switch_to_personal: "cmd+shift+p"
+  switch_to_ai_research: "cmd+shift+a"
+  
+  # Quick actions
+  save_layout: "cmd+shift+s"
+  load_layout: "cmd+shift+l"
+  refresh_status: "cmd+shift+r"
+
+# Notification Settings
+notifications:
+  enabled: true
+  profile_switches: true
+  tool_swaps: true
+  errors: true
+  warnings: true
+  
+  # Notification methods
+  methods:
+    - "os_notification"
+    - "sound"
+    - "visual_indicator"
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  file: "logs/dynamic_layout.log"
+  max_file_size: "10MB"
+  backup_count: 5
+  
+  # Log specific events
+  events:
+    tool_swaps: true
+    profile_changes: true
+    errors: true
+    performance_metrics: true 

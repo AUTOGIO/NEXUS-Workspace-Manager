@@ -1,0 +1,178 @@
+# YABAI Workspace Configuration
+# Advanced settings for workspace management
+
+# Display Configuration - User's 2-Display Setup
+displays:
+  center:
+    id: 1
+    name: "34' Curved Display (Main)"
+    purpose: "Primary Development & Content"
+    apps: ["Cursor", "iTerm2", "Vivaldi", "Perplexity", "YouTube", "Safari", "Ollama", "LM Studio", "MLX"]
+    
+  right:
+    id: 2
+    name: "iMac 24' Display"
+    purpose: "Communication & Productivity"
+    apps: ["Obsidian", "Notes", "WhatsApp", "X", "Telegram", "Shortcuts"]
+
+# Always visible across all spaces and profiles
+always_visible_apps: ["ChatGPT", "Grok"]
+
+# Floating windows (never tiled)
+floating_apps: ["Finder", "iTerm2", "Terminal", "System Settings"]
+
+# Workspace Profiles
+profiles:
+  work:
+    name: "Work Profile"
+    description: "Development & Productivity Focus"
+    apps:
+      - "Cursor"
+      - "iTerm2"
+      - "Shortcuts"
+      - "Obsidian"
+      - "Notes"
+      - "Vivaldi"
+      - "Perplexity- Ask Anything"
+      - "Safari"
+      - "ChatGPT"
+      - "Grok"
+      - "GitHub Copilot"
+    
+  personal:
+    name: "Personal Profile"
+    description: "Entertainment & Social Focus"
+    apps:
+      - "WhatsApp"
+      - "X"
+      - "Telegram"
+      - "YouTube"
+      - "Obsidian"
+      - "Safari"
+      - "Vivaldi"
+      - "ChatGPT"
+      - "Grok"
+    
+  ai_research:
+    name: "AI Research Profile"
+    description: "AI Development & Model Management"
+    apps:
+      - "Cursor"
+      - "Ollama"
+      - "LM Studio"
+      - "MLX"
+      - "ChatGPT"
+      - "Grok"
+      - "Perplexity- Ask Anything"
+      - "Obsidian"
+
+# AI Integration Settings
+ai_integration:
+  model_storage_path: "/Volumes/MICRO/models"
+  ollama_enabled: true
+  mlx_enabled: true
+  lm_studio_enabled: true
+  
+  # Enhanced model recommendations by profile
+  model_recommendations:
+    work:
+      primary: "Meta-Llama-3.1-8B-Instruct-Q6_K"
+      coding: "DeepSeek-R1-0528-Qwen3-8B-MLX-4bit"
+      reasoning: "Phi-4-mini-reasoning-MLX-4bit"
+      quick: "TinyLlama-1.1B-Chat-v1.0-mlx"
+    personal:
+      primary: "Qwen3-4B-MLX-4bit"
+      conversation: "Meta-Llama-3-8B-Instruct-4bit"
+      creative: "Mistral-Nemo-Instruct-2407-GGUF"
+      quick: "Llama-3.2-1B-Instruct-4bit"
+    ai_research:
+      primary: "Qwen3-14B-MLX-4bit"
+      reasoning: "Phi-4-reasoning-plus-MLX-4bit"
+      coding: "DeepSeek-R1-Distill-Llama-8B-Q4_K_M"
+      vision: "Qwen2.5-VL-7B-Instruct-GGUF"
+  
+  # Model selection strategies
+  selection_strategies:
+    memory_based: true
+    performance_based: true
+    context_aware: true
+    auto_optimization: true
+  
+  # Integration settings
+  enhanced_ai_script: "scripts/enhanced_ai_integration.sh"
+  python_manager: "scripts/ai_model_manager.py"
+  auto_load_models: false
+  background_monitoring: true
+
+# Time-based Workspace Switching
+time_based_switching:
+  enabled: true
+  schedules:
+    work_hours:
+      days: [1, 2, 3, 4, 5]  # Monday to Friday
+      start_time: "09:00"
+      end_time: "17:00"
+      profile: "work"
+    
+    evening_hours:
+      days: [1, 2, 3, 4, 5, 6, 7]  # All days
+      start_time: "18:00"
+      end_time: "08:00"
+      profile: "personal"
+    
+    research_hours:
+      days: [1, 2, 3, 4, 5]  # Monday to Friday
+      start_time: "17:00"
+      end_time: "18:00"
+      profile: "ai_research"
+
+# YABAI Advanced Settings
+yabai_settings:
+  # Window management
+  window_placement: "second_child"
+  window_shadow: "float"
+  window_opacity: "off"
+  window_opacity_duration: "0.0"
+  
+  # Space management
+  space_placement: "random"
+  space_padding: "off"
+  space_gap: "off"
+  
+  # Mouse support
+  mouse_follows_focus: "off"
+  focus_follows_mouse: "off"
+  mouse_modifier: "alt"
+  mouse_action1: "move"
+  mouse_action2: "resize"
+  
+  # Layout settings
+  layout: "bsp"
+  auto_balance: "on"
+  split_ratio: "0.5"
+  split_type: "auto"
+
+# External Integrations
+integrations:
+  streamlit_dashboard:
+    enabled: true
+    port: 8501
+    auto_open: true
+  
+  external_models:
+    enabled: true
+    storage_path: "/Volumes/MICRO/models"
+    auto_load: false
+    
+  notifications:
+    enabled: true
+    profile_switches: true
+    errors: true
+    warnings: true
+
+# Performance Settings
+performance:
+  rule_cache_enabled: true
+  display_detection_interval: 30  # seconds
+  status_update_interval: 10      # seconds
+  dashboard_refresh_rate: 5       # seconds 
