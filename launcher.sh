@@ -43,7 +43,8 @@ show_main_menu() {
     echo "  10) Activity Watch Integration"
     echo "  ${BLUE}--- New Tools ---${NC}"
     echo "  23) 🚀 Quick App Launcher"
-    echo "  24) 📊 System Performance Monitor"
+    echo "  24) 📊 System Performance Monitor
+  25) 🤖 AI Workspace Optimizer (MLX)"
     echo ""
     echo "${GREEN}📊 Dashboard & Monitoring${NC}"
     echo "  11) Classic Streamlit Dashboard"
@@ -296,10 +297,14 @@ main() {
                 echo "${GREEN}🚀 Starting Quick App Launcher...${NC}"
                 "$SCRIPT_DIR/scripts/quick_app_launcher.sh"
                 ;;
-            24)
-                echo "${GREEN}📊 Running System Performance Monitor...${NC}"
-                "$SCRIPT_DIR/scripts/system_performance_monitor.sh"
-                ;;
+                    24)
+            echo "${GREEN}📊 Running System Performance Monitor...${NC}"
+            "$SCRIPT_DIR/scripts/system_performance_monitor.sh"
+            ;;
+        25)
+            echo "${GREEN}🤖 Launching AI Workspace Optimizer...${NC}"
+            python3 "$SCRIPT_DIR/scripts/ai_workspace_optimizer.py"
+            ;;
             0)
                 echo "${GREEN}👋 Goodbye!${NC}"
                 exit 0

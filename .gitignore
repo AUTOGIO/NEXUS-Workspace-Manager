@@ -309,3 +309,21 @@ workspace_state.json
 profile_cache.json
 model_cache.json
 ai_cache.json
+
+# Logs
+logs/
+*.log
+
+# Data files
+data/archive/
+configs/*_data/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak
+*.old
+*~
