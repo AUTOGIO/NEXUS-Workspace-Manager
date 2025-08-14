@@ -1,96 +1,103 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "nexus"
-version = "2.0.0"
-description = "AI-Powered Workspace Intelligence for Apple Silicon"
+version = "1.0.0"
+description = "AI-Powered Workspace Intelligence for Apple Silicon - Enhanced with 15 BetterTouchTool gestures, 18 Keyboard Maestro macros, 16 Apple Shortcuts, and AI-powered workspace optimization"
 readme = "README.md"
+requires-python = ">=3.11"
 license = {text = "MIT"}
 authors = [
-    {name = "NEXUS Team", email = "team@nexus-workspace.com"}
+    {name = "Eduardo Giovannini", email = "eduardo@giovannini.dev"}
 ]
 maintainers = [
-    {name = "NEXUS Maintainers", email = "maintainers@nexus-workspace.com"}
+    {name = "Eduardo Giovannini", email = "eduardo@giovannini.dev"}
 ]
-keywords = ["workspace", "ai", "macos", "yabai", "apple-silicon", "neural-engine"]
+keywords = [
+    "ai", "workspace", "productivity", "automation", "yabai", "macos", 
+    "apple-silicon", "bettertouchtool", "keyboard-maestro", "apple-shortcuts",
+    "gesture-control", "ai-optimization", "workspace-management"
+]
 classifiers = [
-    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: End Users/Desktop",
     "Intended Audience :: Developers",
-    "Intended Audience :: System Administrators",
     "License :: OSI Approved :: MIT License",
     "Operating System :: MacOS",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.7",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Topic :: Desktop Environment",
-    "Topic :: System :: Systems Administration",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: System :: Systems Administration",
+    "Topic :: Utilities",
+    "Typing :: Typed"
 ]
-requires-python = ">=3.7"
+
 dependencies = [
-    "streamlit>=1.28.0",
+    "python-dotenv>=1.0.0",
+    "pydantic>=2,<3",
+    "httpx>=0.25.0",
+    "aw-client>=0.4.0",
+    "pandas>=2.0.0",
+    "seaborn>=0.12.0",
     "psutil>=5.9.0",
     "pyyaml>=6.0.1",
-    "mlx-lm>=0.2.0",
-    "transformers>=4.35.0",
-    "torch>=2.1.0",
-    "numpy>=1.24.0",
-    "pandas>=2.1.0",
-    "matplotlib>=3.7.0",
-    "requests>=2.31.0",
-    "python-dotenv>=1.0.0",
     "click>=8.1.0",
-    "rich>=13.7.0",
+    "rich>=13.0.0",
     "typer>=0.9.0",
+    "streamlit>=1.28.0",
+    "plotly>=5.17.0",
+    "numpy>=1.24.0",
+    "matplotlib>=3.7.0"
 ]
 
 [project.optional-dependencies]
+mlx = [
+    "mlx>=0.0.8",
+    "mlx-lm>=0.0.4"
+]
+n8n = [
+    "n8n>=1.0.0"
+]
+analytics = [
+    "activitywatch>=0.12.0",
+    "jupyter>=1.0.0",
+    "ipykernel>=6.0.0"
+]
 dev = [
     "pytest>=7.4.0",
-    "pytest-asyncio>=0.21.0",
     "pytest-cov>=4.1.0",
-    "black>=23.11.0",
-    "flake8>=6.1.0",
-    "mypy>=1.7.0",
-    "pre-commit>=3.5.0",
-    "sphinx>=7.2.0",
-]
-docs = [
-    "sphinx>=7.2.0",
-    "sphinx-rtd-theme>=1.3.0",
-    "myst-parser>=2.0.0",
-]
-test = [
-    "pytest>=7.4.0",
-    "pytest-asyncio>=0.21.0",
-    "pytest-cov>=4.1.0",
-    "pytest-mock>=3.12.0",
+    "black>=23.0.0",
+    "mypy>=1.5.0",
+    "ruff>=0.1.0",
+    "pre-commit>=3.3.0"
 ]
 
 [project.urls]
-Homepage = "https://github.com/yourusername/NEXUS"
-Documentation = "https://nexus-workspace.readthedocs.io/"
-Repository = "https://github.com/yourusername/NEXUS.git"
-"Bug Tracker" = "https://github.com/yourusername/NEXUS/issues"
-"Source Code" = "https://github.com/yourusername/NEXUS"
+Homepage = "https://github.com/yourusername/nexus"
+Documentation = "https://github.com/yourusername/nexus#readme"
+Repository = "https://github.com/yourusername/nexus.git"
+Issues = "https://github.com/yourusername/nexus/issues"
+Discussions = "https://github.com/yourusername/nexus/discussions"
+Wiki = "https://github.com/yourusername/nexus/wiki"
 
 [project.scripts]
 nexus = "nexus.cli.main:main"
-nexus-launcher = "nexus.cli.launcher:main"
+nexus-launcher = "nexus.core.launcher:main"
+nexus-ai = "nexus.core.ai_model_manager:main"
 
-[tool.setuptools.packages.find]
-where = ["src"]
-include = ["nexus*"]
-exclude = ["tests*", "docs*"]
+[tool.uv]
+index-url = "https://pypi.org/simple"
+extra-index-urls = [
+    "https://pypi.org/simple"
+]
 
 [tool.black]
+target-version = ['py311', 'py312']
 line-length = 88
-target-version = ['py37', 'py38', 'py39', 'py310', 'py311']
 include = '\.pyi?$'
 extend-exclude = '''
 /(
@@ -106,14 +113,8 @@ extend-exclude = '''
 )/
 '''
 
-[tool.isort]
-profile = "black"
-multi_line_output = 3
-line_length = 88
-known_first_party = ["nexus"]
-
 [tool.mypy]
-python_version = "3.7"
+python_version = "3.11"
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true
@@ -126,47 +127,44 @@ warn_unused_ignores = true
 warn_no_return = true
 warn_unreachable = true
 strict_equality = true
+show_error_codes = true
 
 [[tool.mypy.overrides]]
 module = [
     "streamlit.*",
-    "psutil.*",
-    "yaml.*",
-    "mlx.*",
-    "transformers.*",
-    "torch.*",
-    "numpy.*",
-    "pandas.*",
-    "matplotlib.*",
-    "requests.*",
-    "dotenv.*",
-    "click.*",
-    "rich.*",
-    "typer.*",
+    "plotly.*",
+    "seaborn.*",
+    "matplotlib.*"
 ]
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
-minversion = "6.0"
-addopts = "-ra -q --strict-markers --strict-config"
+minversion = "7.0"
+addopts = [
+    "-ra",
+    "-q",
+    "--strict-markers",
+    "--strict-config",
+    "--cov=src/nexus",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+    "--cov-report=xml"
+]
 testpaths = ["tests"]
-python_files = ["test_*.py", "*_test.py"]
-python_classes = ["Test*"]
-python_functions = ["test_*"]
 markers = [
     "slow: marks tests as slow (deselect with '-m \"not slow\"')",
     "integration: marks tests as integration tests",
     "unit: marks tests as unit tests",
+    "ai: marks tests as AI-related tests",
+    "yabai: marks tests as YABAI-related tests"
 ]
 
 [tool.coverage.run]
-source = ["nexus"]
+source = ["src/nexus"]
 omit = [
     "*/tests/*",
     "*/test_*",
-    "*/__pycache__/*",
-    "*/venv/*",
-    "*/env/*",
+    "*/__pycache__/*"
 ]
 
 [tool.coverage.report]
@@ -183,24 +181,55 @@ exclude_lines = [
     "@(abc\\.)?abstractmethod",
 ]
 
-[tool.flake8]
-max-line-length = 88
-extend-ignore = ["E203", "W503"]
-exclude = [
-    ".git",
-    "__pycache__",
-    "build",
-    "dist",
-    ".venv",
-    "venv",
-    ".eggs",
-    "*.egg",
+[tool.coverage.html]
+directory = "htmlcov"
+
+[tool.coverage.xml]
+output = "coverage.xml"
+
+[tool.pre-commit]
+repos = [
+    {
+        repo = "https://github.com/pre-commit/pre-commit-hooks",
+        rev = "v4.4.0",
+        hooks = [
+            {id = "trailing-whitespace"},
+            {id = "end-of-file-fixer"},
+            {id = "check-yaml"},
+            {id = "check-added-large-files"},
+            {id = "check-merge-conflict"},
+        ]
+    },
+    {
+        repo = "https://github.com/psf/black",
+        rev = "23.7.0",
+        hooks = [{id = "black"}]
+    },
+    {
+        repo = "https://github.com/charliermarsh/ruff-pre-commit",
+        rev = "v0.1.6",
+        hooks = [{id = "ruff", args = ["--fix"]}]
+    }
 ]
 
-[tool.bandit]
-exclude_dirs = ["tests", "docs"]
-skips = ["B101", "B601"]
+[tool.ruff]
+target-version = "py311"
+line-length = 88
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "B",  # flake8-bugbear
+    "C4", # flake8-comprehensions
+    "UP", # pyupgrade
+]
+ignore = [
+    "E501",  # line too long, handled by black
+    "B008",  # do not perform function calls in argument defaults
+    "C901",  # too complex
+]
 
-[tool.xenon]
-max_absolute_complexity = 10
-max_average_complexity = 6.0
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]
+"tests/**/*" = ["B011"]

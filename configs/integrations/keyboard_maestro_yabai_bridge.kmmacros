@@ -1,0 +1,183 @@
+{
+  "Keyboard Maestro": {
+    "version": "10.0",
+    "macros": [
+      {
+        "name": "YABAI - Focus Window North",
+        "trigger": {
+          "type": "hotkey",
+          "key": "K",
+          "modifiers": ["command", "shift"]
+        },
+        "actions": [
+          {
+            "type": "execute_applescript",
+            "script": "tell application \"System Events\"\n  key code 126 using {command down, shift down}\nend tell"
+          }
+        ],
+        "enabled": true,
+        "description": "Focus window above current window"
+      },
+      {
+        "name": "YABAI - Focus Window South",
+        "trigger": {
+          "type": "hotkey",
+          "key": "J",
+          "modifiers": ["command", "shift"]
+        },
+        "actions": [
+          {
+            "type": "execute_applescript",
+            "script": "tell application \"System Events\"\n  key code 125 using {command down, shift down}\nend tell"
+          }
+        ],
+        "enabled": true,
+        "description": "Focus window below current window"
+      },
+      {
+        "name": "YABAI - Focus Window East",
+        "trigger": {
+          "type": "hotkey",
+          "key": "L",
+          "modifiers": ["command", "shift"]
+        },
+        "actions": [
+          {
+            "type": "execute_applescript",
+            "script": "tell application \"System Events\"\n  key code 124 using {command down, shift down}\nend tell"
+          }
+        ],
+        "enabled": true,
+        "description": "Focus window to the right of current window"
+      },
+      {
+        "name": "YABAI - Focus Window West",
+        "trigger": {
+          "type": "hotkey",
+          "key": "H",
+          "modifiers": ["command", "shift"]
+        },
+        "actions": [
+          {
+            "type": "execute_applescript",
+            "script": "tell application \"System Events\"\n  key code 123 using {command down, shift down}\nend tell"
+          }
+        ],
+        "enabled": true,
+        "description": "Focus window to the left of current window"
+      },
+      {
+        "name": "YABAI - Switch to Space 1",
+        "trigger": {
+          "type": "hotkey",
+          "key": "1",
+          "modifiers": ["command", "shift"]
+        },
+        "actions": [
+          {
+            "type": "execute_applescript",
+            "script": "tell application \"System Events\"\n  key code 18 using {control down}\nend tell"
+          }
+        ],
+        "enabled": true,
+        "description": "Switch to space 1"
+      },
+      {
+        "name": "YABAI - Switch to Space 2",
+        "trigger": {
+          "type": "hotkey",
+          "key": "2",
+          "modifiers": ["command", "shift"]
+        },
+        "actions": [
+          {
+            "type": "execute_applescript",
+            "script": "tell application \"System Events\"\n  key code 19 using {control down}\nend tell"
+          }
+        ],
+        "enabled": true,
+        "description": "Switch to space 2"
+      },
+      {
+        "name": "YABAI - Switch to Space 3",
+        "trigger": {
+          "type": "hotkey",
+          "key": "3",
+          "modifiers": ["command", "shift"]
+        },
+        "actions": [
+          {
+            "type": "execute_applescript",
+            "script": "tell application \"System Events\"\n  key code 20 using {control down}\nend tell"
+          }
+        ],
+        "enabled": true,
+        "description": "Switch to space 3"
+      },
+      {
+        "name": "YABAI - Switch to Space 4",
+        "trigger": {
+          "type": "hotkey",
+          "key": "4",
+          "modifiers": ["command", "shift"]
+        },
+        "actions": [
+          {
+            "type": "execute_applescript",
+            "script": "tell application \"System Events\"\n  key code 21 using {control down}\nend tell"
+          }
+        ],
+        "enabled": true,
+        "description": "Switch to space 4"
+      },
+      {
+        "name": "YABAI - Toggle Window Float",
+        "trigger": {
+          "type": "hotkey",
+          "key": "F",
+          "modifiers": ["command", "shift"]
+        },
+        "actions": [
+          {
+            "type": "execute_applescript",
+            "script": "tell application \"System Events\"\n  key code 3 using {command down, shift down}\nend tell"
+          }
+        ],
+        "enabled": true,
+        "description": "Toggle current window between tiled and floating"
+      },
+      {
+        "name": "YABAI - Next Space",
+        "trigger": {
+          "type": "hotkey",
+          "key": "SPACE",
+          "modifiers": ["command", "shift"]
+        },
+        "actions": [
+          {
+            "type": "execute_applescript",
+            "script": "tell application \"System Events\"\n  key code 124 using {control down}\nend tell"
+          }
+        ],
+        "enabled": true,
+        "description": "Switch to next space"
+      },
+      {
+        "name": "YABAI - Previous Space",
+        "trigger": {
+          "type": "hotkey",
+          "key": "SPACE",
+          "modifiers": ["command", "shift", "option"]
+        },
+        "actions": [
+          {
+            "type": "execute_applescript",
+            "script": "tell application \"System Events\"\n  key code 123 using {control down}\nend tell"
+          }
+        ],
+        "enabled": true,
+        "description": "Switch to previous space"
+      }
+    ]
+  }
+}

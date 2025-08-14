@@ -20,7 +20,6 @@ open -na "/Applications/Safari.app" --args "https://xbox.com/play"
 echo "⚡ Setting up gaming utilities..."
 open -na "/Applications/iStatistica Pro.app"        # System monitoring
 open -na "/Applications/iStatistica Sensors.app"    # Thermal monitoring  
-open -na "/Applications/CleanMyMac_5_MAS.app"       # System cleanup
 open -na "/Applications/ActivityWatch.app"          # Activity tracking
 
 # Entertainment

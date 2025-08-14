@@ -1,0 +1,225 @@
+{
+  "Keyboard Maestro": {
+    "version": "1.0",
+    "name": "NEXUS Enhanced Macros",
+    "description": "Advanced keyboard shortcuts for NEXUS AI-Powered Workspace Intelligence",
+    "author": "Eduardo Giovannini",
+    "created": "2024-12-19",
+    "macros": [
+      {
+        "name": "🤖 AI Research Mode",
+        "trigger": "Cmd+Shift+AI",
+        "action": "run_script",
+        "description": "Load AI research profile, launch AI tools, optimize for research",
+        "category": "AI Integration",
+        "icon": "🤖",
+        "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\n./scripts/setup/launcher.sh ai_research_profile",
+        "enabled": true,
+        "priority": 1
+      },
+      {
+        "name": "⚡ AI Performance Mode",
+        "trigger": "Cmd+Shift+P",
+        "action": "run_script",
+        "description": "Switch between high/balanced/lightweight AI model profiles",
+        "category": "AI Integration",
+        "icon": "⚡",
+        "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\npython tools/ai/yabai_automation_bridge.py --toggle-performance-mode",
+        "enabled": true,
+        "priority": 2
+      },
+      {
+        "name": "💡 Quick AI Inference",
+        "trigger": "Cmd+Shift+Q",
+        "action": "run_script",
+        "description": "Quick AI query with current context, get workspace suggestions",
+        "category": "AI Integration",
+        "icon": "💡",
+        "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\npython tools/ai/yabai_automation_bridge.py --quick-inference",
+        "enabled": true,
+        "priority": 3
+      },
+      {
+        "name": "🔄 Multi-Display Window Flow",
+        "trigger": "Cmd+Shift+Arrow (any direction)",
+        "action": "run_script",
+        "description": "Move focused window to next display in that direction",
+        "category": "Window Management",
+        "icon": "🔄",
+        "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\npython tools/ai/yabai_automation_bridge.py --move-window-display",
+        "enabled": true,
+        "priority": 4
+      },
+      {
+        "name": "📱 Meeting Mode",
+        "trigger": "Cmd+Shift+M",
+        "action": "run_script",
+        "description": "Switch to meeting profile, launch communication apps, optimize for video calls",
+        "category": "Productivity",
+        "icon": "📱",
+        "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\n./scripts/setup/launcher.sh business_profile",
+        "enabled": true,
+        "priority": 5
+      },
+      {
+        "name": "📊 System Health Monitor",
+        "trigger": "Cmd+Shift+H",
+        "action": "run_script",
+        "description": "Show real-time system metrics, AI model performance, workspace efficiency",
+        "category": "System Management",
+        "icon": "📊",
+        "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\n./scripts/setup/launcher.sh status",
+        "enabled": true,
+        "priority": 6
+      },
+      {
+        "name": "💾 Workspace Snapshot",
+        "trigger": "Cmd+Shift+B",
+        "action": "run_script",
+        "description": "Save current workspace state, create backup, prepare for recovery",
+        "category": "System Management",
+        "icon": "💾",
+        "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\npython tools/ai/yabai_automation_bridge.py --create-snapshot",
+        "enabled": true,
+        "priority": 7
+      },
+      {
+        "name": "🎮 Gaming Mode",
+        "trigger": "Cmd+Shift+G",
+        "action": "run_script",
+        "description": "Load gaming profile, optimize for gaming, hide work distractions",
+        "category": "Productivity",
+        "icon": "🎮",
+        "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\n./scripts/setup/launcher.sh gaming_profile",
+        "enabled": true,
+        "priority": 8
+      },
+      {
+        "name": "📚 Learning Mode",
+        "trigger": "Cmd+Shift+L",
+        "action": "run_script",
+        "description": "Load learning profile, launch educational tools, optimize for study",
+        "category": "Productivity",
+        "icon": "📚",
+        "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\n./scripts/setup/launcher.sh learning_profile",
+        "enabled": true,
+        "priority": 9
+      },
+      {
+        "name": "🚀 Personal Mode",
+        "trigger": "Cmd+Shift+PER",
+        "action": "run_script",
+        "description": "Load personal profile, launch entertainment apps, optimize for relaxation",
+        "category": "Productivity",
+        "icon": "🚀",
+        "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\n./scripts/setup/launcher.sh personal_profile",
+        "enabled": true,
+        "priority": 10
+      },
+      {
+        "name": "🔧 AI Development Mode",
+        "trigger": "Cmd+Shift+DEV",
+        "action": "run_script",
+        "description": "Load AI development profile, launch development tools, optimize for coding",
+        "category": "AI Integration",
+        "icon": "🔧",
+        "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\n./scripts/setup/launcher.sh ai_development_profile",
+        "enabled": true,
+        "priority": 11
+      },
+      {
+        "name": "🎨 AI Content Creation",
+        "trigger": "Cmd+Shift+CRE",
+        "action": "run_script",
+        "description": "Load AI content creation profile, launch creative tools, optimize for content",
+        "category": "AI Integration",
+        "icon": "🎨",
+        "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\n./scripts/setup/launcher.sh ai_content_creation_profile",
+        "enabled": true,
+        "priority": 12
+      },
+      {
+        "name": "🏢 AI Business Mode",
+        "trigger": "Cmd+Shift+BUS",
+        "action": "run_script",
+        "description": "Load AI business profile, launch business tools, optimize for business",
+        "category": "AI Integration",
+        "icon": "🏢",
+        "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\n./scripts/setup/launcher.sh ai_business_profile",
+        "enabled": true,
+        "priority": 13
+      },
+      {
+        "name": "🎮 AI Gaming Mode",
+        "trigger": "Cmd+Shift+AGM",
+        "action": "run_script",
+        "description": "Load AI gaming profile, launch gaming tools, optimize for AI-enhanced gaming",
+        "category": "AI Integration",
+        "icon": "🎮",
+        "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\n./scripts/setup/launcher.sh ai_gaming_profile",
+        "enabled": true,
+        "priority": 14
+      },
+      {
+        "name": "📚 AI Learning Mode",
+        "trigger": "Cmd+Shift+ALM",
+        "action": "run_script",
+        "description": "Load AI learning profile, launch learning tools, optimize for AI-assisted learning",
+        "category": "AI Integration",
+        "icon": "📚",
+        "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\n./scripts/setup/launcher.sh ai_learning_profile",
+        "enabled": true,
+        "priority": 15
+      },
+      {
+        "name": "🔄 Quick Profile Cycle",
+        "trigger": "Cmd+Shift+Tab",
+        "action": "run_script",
+        "description": "Cycle through workspace profiles quickly",
+        "category": "Workspace Management",
+        "icon": "🔄",
+        "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\npython tools/ai/yabai_automation_bridge.py --cycle-profiles",
+        "enabled": true,
+        "priority": 16
+      },
+      {
+        "name": "🎯 Context-Aware Profile",
+        "trigger": "Cmd+Shift+C",
+        "action": "run_script",
+        "description": "AI-powered profile selection based on current context",
+        "category": "AI Integration",
+        "icon": "🎯",
+        "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\npython tools/ai/yabai_automation_bridge.py --context-aware-profile",
+        "enabled": true,
+        "priority": 17
+      },
+      {
+        "name": "🚨 Emergency Reset",
+        "trigger": "Cmd+Shift+Esc",
+        "action": "run_script",
+        "description": "Emergency reset of NEXUS system, restart YABAI, clear issues",
+        "category": "System Management",
+        "icon": "🚨",
+        "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\nyabai --restart-service\nskhd --restart-service\n./scripts/setup/launcher.sh status",
+        "enabled": true,
+        "priority": 18
+      }
+    ],
+    "settings": {
+      "hotkey_recognition": "high_sensitivity",
+      "visual_feedback": true,
+      "sound_feedback": true,
+      "macro_timeout": 1000,
+      "priority_system": true,
+      "category_colors": {
+        "AI Integration": "#d62728",
+        "Productivity": "#ff7f0e",
+        "Window Management": "#2ca02c",
+        "System Management": "#9467bd",
+        "Workspace Management": "#1f77b4"
+      },
+      "global_hotkeys": true,
+      "app_specific_hotkeys": false
+    }
+  }
+}

@@ -1,510 +1,253 @@
-# 🚀 NEXUS - Neural EXperience Unified System
+# 🚀 NEXUS - AI-Powered Workspace Intelligence
 
-> **AI-Powered Workspace Intelligence for Apple Silicon**
+> **The Ultimate AI-Powered Workspace Management System for Apple Silicon**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
-[![Apple Silicon](https://img.shields.io/badge/Apple%20Silicon-M3%20Optimized-green.svg)](https://developer.apple.com/metal/)
-[![YABAI](https://img.shields.io/badge/YABAI-Tiling%20WM-orange.svg)](https://github.com/koekeishiya/yabai)
+[![Project Status](https://img.shields.io/badge/status-Production%20Ready-brightgreen)](https://github.com/yourusername/nexus)
+[![macOS](https://img.shields.io/badge/macOS-12.0+-blue)](https://www.apple.com/macos/)
+[![Python](https://img.shields.io/badge/Python-3.11+-yellow)](https://www.python.org/)
+[![Apple Silicon](https://img.shields.io/badge/Apple%20Silicon-M1%2FM2%2FM3-orange)](https://www.apple.com/mac/)
 
-## 📋 Table of Contents
+## 🌟 **What's New in NEXUS Enhanced**
 
-- [Overview](#-overview)
-- [Features](#-features)
-- [Architecture](#-architecture)
-- [Quick Start](#-quick-start)
-- [Installation](#-installation)
-- [Configuration](#-configuration)
-- [Usage](#-usage)
-- [API Reference](#-api-reference)
-- [Contributing](#-contributing)
-- [License](#-license)
+🚀 **Just Released: NEXUS Enhanced Automations v1.0.0**
 
-## 🎯 Overview
+- **15 Enhanced BetterTouchTool Gestures** for intuitive workspace control
+- **18 Keyboard Maestro Macros** for keyboard-based automation
+- **16 Apple Shortcuts** for native macOS integration
+- **8 Shell Script Shortcuts** for command-line access
+- **AI-Powered Workspace Optimization** with 90%+ confidence
+- **Context-Aware Profile Selection** for automatic workspace adaptation
+- **Intelligent Auto-Scheduling** based on time and activity
+- **Real-Time Performance Monitoring** and optimization
 
-**NEXUS** is an advanced AI-powered workspace management system designed specifically for Apple Silicon Macs. It combines the power of YABAI tiling window management with intelligent AI integration, real-time analytics, and automated workspace optimization.
+## 🎯 **Overview**
 
-### **Key Capabilities**
-- 🤖 **AI-Powered Intelligence**: Neural Engine optimized inference
-- 🖥️ **Adaptive Multi-Display**: Automatic optimization for 1-3 displays
-- 📊 **Real-Time Analytics**: Screen time tracking and productivity monitoring
-- ⚡ **Performance Optimization**: Apple Silicon native acceleration
-- 🔄 **Automated Workflows**: Smart profile switching and tool management
-- 🛡️ **Privacy-First**: Complete local processing, no external dependencies
+NEXUS is a revolutionary AI-powered workspace management system designed specifically for Apple Silicon Macs. It combines the power of YABAI tiling window management with cutting-edge AI intelligence to create the most productive workspace experience possible.
 
-## ✨ Features
+### ✨ **Key Features**
 
-### **Core Workspace Management**
-- **Intelligent Profile Switching**: AI-driven workspace optimization
-- **Dynamic Layout Management**: Real-time tool swapping across displays
-- **Adaptive Multi-Display**: Automatic 1-3 display configuration
-- **Performance Monitoring**: Real-time system and application analytics
+- **🧠 AI-Powered Intelligence**: Context-aware workspace optimization
+- **🎨 Gesture Control**: 15 intuitive BetterTouchTool gestures
+- **⌨️ Keyboard Automation**: 18 powerful Keyboard Maestro macros
+- **📱 Native Integration**: 16 Apple Shortcuts for seamless workflow
+- **🖥️ Smart Window Management**: YABAI integration with AI optimization
+- **🔄 Auto-Scheduling**: Intelligent workspace adaptation
+- **📊 Performance Monitoring**: Real-time system health tracking
+- **🎯 Multi-Profile Support**: 12 specialized workspace profiles
 
-### **AI Integration**
-- **Neural Engine Optimization**: Apple M3 native acceleration
-- **Local Model Support**: MLX, GGUF, and Hugging Face models
-- **Context-Aware Suggestions**: Intelligent workspace recommendations
-- **Real-Time Analysis**: Instant workspace optimization
+## 🚀 **Quick Start**
 
-### **Analytics & Monitoring**
-- **Screen Time Tracking**: Application usage analytics
-- **Productivity Metrics**: Focus and efficiency monitoring
-- **Performance Benchmarking**: System optimization tracking
-- **Data Visualization**: Streamlit-powered dashboards
+### Prerequisites
 
-### **Automation & Integration**
-- **N8N Workflows**: Advanced automation capabilities
-- **Keyboard Maestro**: Enhanced keyboard shortcuts
-- **BetterTouchTool**: Gesture-based controls
-- **Raycast Integration**: Quick access and search
+- macOS 12.0+ (Sequoia/Tahoe recommended)
+- Apple Silicon Mac (M1/M2/M3) for optimal performance
+- Python 3.11+ with `uv` package manager
 
-## 🏗️ Architecture
+### Installation
 
-```
-NEXUS/
-├── 📁 Core System
-│   ├── launcher.sh              # Main entry point
-│   ├── configs/                 # Configuration management
-│   └── scripts/                 # Core functionality
-├── 🤖 AI Integration
-│   ├── scripts/ai/              # AI model management
-│   └── configs/models/          # Model configurations
-├── 📊 Analytics & Monitoring
-│   ├── scripts/analytics/       # Data collection
-│   └── dashboard/               # Visualization
-├── ⚙️ Automation
-│   ├── scripts/automation/      # Workflow automation
-│   └── configs/integrations/    # Third-party integrations
-├── 📚 Documentation
-│   ├── docs/user-guides/        # User documentation
-│   ├── docs/installation/       # Setup guides
-│   └── docs/api/               # Technical documentation
-└── 📈 Data & Logs
-    ├── logs/                    # System logs
-    └── data/                    # Analytics data
-```
-
-## 🚀 Quick Start
-
-### **Prerequisites**
-- macOS 12.0 (Monterey) or later
-- Apple M3 Mac (optimized for M3 iMac)
-- YABAI installed and running
-- Python 3.7+ with required packages
-
-### **Installation**
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/NEXUS.git
-cd NEXUS
+git clone https://github.com/yourusername/nexus.git
+cd nexus
 
-# Make scripts executable
-chmod +x *.sh scripts/*.sh configs/profiles/*.sh
-
-# Install Python dependencies
-pip install -r requirements.txt
-
-# Start YABAI service
-yabai --start-service
-
-# Launch NEXUS
-./launcher.sh
+# Run the enhanced automations installer
+chmod +x scripts/setup/install_enhanced_automations.sh
+./scripts/setup/install_enhanced_automations.sh
 ```
 
-### **First-Time Setup**
+### First Launch
+
 ```bash
-# 1. Navigate to NEXUS directory
-cd ~/Desktop/Projects/YABAI
+# Launch the interactive menu
+nexus-quick-menu
 
-# 2. Make scripts executable
-chmod +x *.sh scripts/*.sh configs/profiles/*.sh
+# Or use AI-powered optimization
+nexus-ai-optimize
 
-# 3. Start YABAI service
-yabai --start-service
-
-# 4. Launch NEXUS main interface
-./launcher.sh
-
-# 5. Select option 12) System Status Check
-# 6. Load a workspace profile (option 1-4)
-# 7. Test AI integration (option 7)
-# 8. Launch dashboard (option 11)
+# Analyze your workspace
+nexus-workspace-analyze
 ```
 
-## 📦 Installation
+## 🎨 **Enhanced Automation Features**
 
-### **System Requirements**
-- **Operating System**: macOS 12.0 (Monterey) or later
-- **Hardware**: Apple M3 Mac (16GB+ unified memory recommended)
-- **Display**: 1-3 displays (automatically adapts to your setup)
-- **Storage**: 10GB available space for models and data
+### 🎯 **BetterTouchTool Gestures**
 
-### **Dependencies**
+Transform your workspace with intuitive gestures:
 
-#### **Core Dependencies**
+- **3-finger swipe up + hold**: NEXUS Profile Switcher
+- **4-finger pinch in**: Deep Focus Mode Toggle
+- **3-finger swipe down + hold**: Intelligent Layout
+- **2-finger swipes**: Smart Window Focus (North/South/East/West)
+- **4-finger swipe up + hold**: Neural Optimization
+- **5-finger tap**: Sunrise Setup (morning hours)
+
+### ⌨️ **Keyboard Maestro Macros**
+
+Powerful keyboard shortcuts for everything:
+
+- **Cmd+Shift+AI**: AI Research Mode
+- **Cmd+Shift+P**: AI Performance Mode
+- **Cmd+Shift+Q**: Quick AI Inference
+- **Cmd+Shift+M**: Meeting Mode
+- **Cmd+Shift+G**: Gaming Mode
+- **Cmd+Shift+Esc**: Emergency Reset
+
+### 🧠 **AI-Powered Intelligence**
+
+The system automatically:
+
+- **Analyzes your workspace context** in real-time
+- **Recommends optimal profiles** with 90%+ confidence
+- **Optimizes layouts** based on your current activity
+- **Schedules workspace changes** intelligently
+- **Monitors system performance** and suggests improvements
+
+## 🏗️ **Project Structure**
+
+```
+nexus-workspace/
+├── .github/                    # GitHub Actions and templates
+├── assets/                     # Images, icons, and media
+├── configs/                    # Configuration files
+│   ├── models/                # AI model configurations
+│   ├── profiles/              # Workspace profiles
+│   └── integrations/          # Third-party integrations
+├── dashboard/                  # Streamlit dashboard
+├── data/                      # Data storage and snapshots
+├── docs/                      # Documentation
+│   ├── user-guides/          # User documentation
+│   └── developer-guides/     # Developer documentation
+├── infra/                     # Infrastructure and deployment
+├── logs/                      # System logs
+├── scripts/                   # Automation scripts
+│   └── setup/                # Setup and installation
+├── src/                       # Source code
+│   └── nexus/                # Core NEXUS package
+├── tests/                     # Test suite
+├── tools/                     # Utility tools
+│   └── ai/                   # AI integration tools
+├── pyproject.toml            # Project configuration
+├── Makefile                  # Build automation
+└── README.md                 # This file
+```
+
+## 🔧 **Development Setup**
+
+### Environment Setup
+
 ```bash
-# YABAI (Tiling Window Manager)
-brew install yabai
-
-# SKHD (Global Hotkey Daemon)
-brew install skhd
-
-# Python 3.7+
-brew install python@3.9
-
-# Required Python packages
-pip install streamlit psutil pyyaml mlx-lm transformers
-```
-
-#### **Optional Dependencies**
-```bash
-# N8N (Workflow Automation)
-npm install -g n8n
-
-# BetterTouchTool (Gesture Controls)
-# Download from: https://folivora.ai/bettertouchtool
-
-# Keyboard Maestro (Macro Automation)
-# Download from: https://www.keyboardmaestro.com/
-
-# Raycast (Quick Access)
-# Download from: https://www.raycast.com/
-```
-
-### **Model Collection Setup**
-```bash
-# Create model directory
-mkdir -p /Volumes/MICRO/models
-
-# Download recommended models
-# - Qwen2.5-0.5B-Instruct-MLX-4bit (Neural Engine optimized)
-# - Meta-Llama-3.1-8B-Instruct-Q6_K (High performance)
-# - Phi-4-mini-reasoning-MLX-4bit (Reasoning tasks)
-```
-
-## ⚙️ Configuration
-
-### **Main Configuration**
-```yaml
-# configs/yabai_config.yaml
-displays:
-  - name: "HZ30GAMER"
-    position: "left"
-    resolution: "2560x1080"
-  - name: "LG ULTRAWIDE"
-    position: "center"
-    resolution: "3440x1440"
-  - name: "iMac"
-    position: "right"
-    resolution: "4480x2520"
-
-ai_integration:
-  model_recommendations:
-    work:
-      primary: "Meta-Llama-3.1-8B-Instruct-Q6_K"
-      coding: "DeepSeek-R1-0528-Qwen3-8B-MLX-4bit"
-      reasoning: "Phi-4-mini-reasoning-MLX-4bit"
-      quick: "TinyLlama-1.1B-Chat-v1.0-mlx"
-    personal:
-      primary: "Qwen2.5-0.5B-Instruct-MLX-4bit"
-      entertainment: "Gemma-3n-E4B-it-MLX-4bit"
-    ai_research:
-      primary: "Qwen3-14B-MLX-4bit"
-      reasoning: "Phi-4-reasoning-plus-MLX-4bit"
-      vision: "Qwen2.5-VL-7B-Instruct-GGUF"
-
-  selection_strategies:
-    - memory_based
-    - performance_based
-    - context_aware
-    - auto_optimization
-
-  integration_settings:
-    enhanced_ai_script: true
-    python_manager: true
-    auto_load_models: true
-    background_monitoring: true
-```
-
-### **Workspace Profiles**
-```bash
-# Work Profile (Development & Productivity)
-./configs/profiles/work_profile.sh
-
-# Personal Profile (Entertainment & Social)
-./configs/profiles/personal_profile.sh
-
-# AI Research Profile (AI & ML Development)
-./configs/profiles/ai_research_profile.sh
-
-# Daily Routine (Default Setup)
-./configs/profiles/daily_routine.sh
-```
-
-## 🎯 Usage
-
-### **Daily Workflow**
-
-#### **Morning Setup**
-```bash
-# 1. Load work profile
-./configs/profiles/work_profile.sh
-
-# 2. Enable AI integration
-./scripts/ai/enhanced_ai_integration.sh
-
-# 3. Start analytics monitoring
-./scripts/analytics/screen_time_collector.sh monitor
-
-# 4. Launch dashboard
-cd dashboard && streamlit run workspace_dashboard.py
-```
-
-#### **Evening Wind-Down**
-```bash
-# 1. Switch to personal profile
-./configs/profiles/personal_profile.sh
-
-# 2. Review daily analytics
-./scripts/analytics/activity_watch_integration.sh report
-
-# 3. Generate productivity summary
-python3 scripts/analytics/generate_daily_report.py
-```
-
-### **AI Integration**
-
-#### **Neural Engine Optimization**
-```python
-# Enhanced workspace analysis
-from scripts.ai.ai_model_manager import AIModelManager
-
-manager = AIModelManager()
-context = manager.get_workspace_context()
-optimization = manager.suggest_workspace_optimizations()
-
-print(f"🧠 Workspace Analysis: {optimization['suggestions']}")
-print(f"⚡ Processing Time: {optimization['processing_time']:.2f}s")
-```
-
-#### **Model Management**
-```python
-# Intelligent model selection
-manager = AIModelManager()
-available_memory = manager.get_available_memory()
-optimal_models = manager.select_optimal_models(available_memory)
-
-print(f"📊 Selected Models: {optimal_models['work']}")
-print(f"🧠 Memory Usage: {optimal_models['memory_usage']}GB")
-```
-
-### **Dashboard & Monitoring**
-
-#### **Streamlit Dashboard**
-```bash
-# Launch main dashboard
-cd dashboard && streamlit run workspace_dashboard.py
-
-# Launch dynamic layout dashboard
-./launch_dynamic_layout.sh dashboard
-```
-
-#### **Analytics Commands**
-```bash
-# Screen time monitoring
-./scripts/analytics/screen_time_collector.sh monitor
-
-# Activity watch integration
-./scripts/analytics/activity_watch_integration.sh monitor
-
-# Generate reports
-python3 scripts/analytics/generate_reports.py
-```
-
-## 📚 API Reference
-
-### **Core Classes**
-
-#### **AIModelManager**
-```python
-class AIModelManager:
-    """Advanced AI model management for workspace optimization"""
-    
-    def __init__(self):
-        """Initialize model manager with workspace context"""
-    
-    def load_model_collection(self) -> Dict:
-        """Scan and load available AI models"""
-    
-    def get_workspace_context(self) -> WorkspaceContext:
-        """Gather real-time workspace context"""
-    
-    def select_optimal_models(self, context: WorkspaceContext) -> Dict:
-        """Select optimal models based on context and memory"""
-    
-    def suggest_workspace_optimizations(self) -> Dict:
-        """Generate AI-powered workspace optimization suggestions"""
-```
-
-#### **M3NeuralEngineMLX**
-```python
-class M3NeuralEngineMLX:
-    """Apple M3 Neural Engine optimization using MLX framework"""
-    
-    def __init__(self, model_path: str = None):
-        """Initialize Neural Engine with optional model path"""
-    
-    def neural_engine_generate(self, prompt: str, max_tokens: int = 150) -> Dict:
-        """Generate text using Neural Engine optimized inference"""
-    
-    def chat_interface(self, enable_continuous: bool = False) -> Dict:
-        """Interactive chat session with Neural Engine"""
-    
-    def benchmark_neural_engine(self, test_prompts: List[str]) -> Dict:
-        """Comprehensive performance benchmarking"""
-```
-
-### **Configuration Classes**
-
-#### **WorkspaceProfile**
-```python
-class WorkspaceProfile:
-    """Workspace profile configuration and management"""
-    
-    def __init__(self, profile_name: str):
-        """Initialize workspace profile"""
-    
-    def load_profile(self) -> bool:
-        """Load workspace profile configuration"""
-    
-    def apply_profile(self) -> Dict:
-        """Apply profile settings to current workspace"""
-    
-    def optimize_profile(self, context: Dict) -> Dict:
-        """AI-powered profile optimization"""
-```
-
-### **Utility Functions**
-
-#### **Display Management**
-```python
-def detect_displays() -> List[Dict]:
-    """Detect and configure multi-display setup"""
-
-def optimize_display_layout(displays: List[Dict]) -> Dict:
-    """Optimize display layout for workspace efficiency"""
-
-def swap_tools_across_displays(tool_config: Dict) -> bool:
-    """Swap tools across displays based on context"""
-```
-
-#### **Analytics Functions**
-```python
-def collect_screen_time_data() -> Dict:
-    """Collect screen time and application usage data"""
-
-def analyze_productivity_patterns(data: Dict) -> Dict:
-    """Analyze productivity patterns and trends"""
-
-def generate_optimization_recommendations(analysis: Dict) -> List[str]:
-    """Generate workspace optimization recommendations"""
-```
-
-## 🤝 Contributing
-
-### **Development Setup**
-```bash
-# Fork the repository
-git clone https://github.com/yourusername/NEXUS.git
-cd NEXUS
-
 # Create virtual environment
-python3 -m venv venv
-source venv/bin/activate
+uv venv --python 3.11
 
-# Install development dependencies
-pip install -r requirements-dev.txt
+# Activate environment
+source .venv/bin/activate
+
+# Install dependencies
+uv pip install -e .
+```
+
+### Code Quality
+
+```bash
+# Format code
+make format
+
+# Type checking
+make type-check
 
 # Run tests
-python -m pytest tests/
+make test
 
-# Run linting
-flake8 scripts/ tests/
+# Lint code
+make lint
 ```
 
-### **Code Standards**
-- **Python**: PEP 8 compliance
-- **Shell Scripts**: ShellCheck validation
-- **Documentation**: Comprehensive docstrings
-- **Testing**: 90%+ code coverage
-- **Type Hints**: Full type annotation
+## 📚 **Documentation**
 
-### **Pull Request Process**
+- **[User Guide](docs/user-guides/USER_GUIDE.md)**: Complete user documentation
+- **[Enhanced Automations Guide](docs/user-guides/ENHANCED_AUTOMATIONS_GUIDE.md)**: Automation features guide
+- **[Interactive Guide](dashboard/interactive_guide.py)**: Interactive dashboard
+- **[Project Structure](docs/developer-guides/PROJECT_STRUCTURE.md)**: Developer documentation
+- **[Installation Guide](docs/installation/INSTALLATION.md)**: Setup instructions
+
+## 🎮 **Usage Examples**
+
+### Basic Workspace Management
+
+```bash
+# Load a specific profile
+./scripts/setup/launcher.sh work_profile
+
+# Launch dashboard
+./scripts/setup/launcher.sh dashboard
+
+# Check system status
+./scripts/setup/launcher.sh status
+```
+
+### AI-Powered Features
+
+```bash
+# AI layout optimization
+nexus-ai-optimize
+
+# Workspace analysis
+nexus-workspace-analyze
+
+# Context-aware profile selection
+nexus-context-profile
+
+# Auto-schedule workspace
+nexus-auto-schedule
+```
+
+### Advanced Automation
+
+```bash
+# Create workspace snapshot
+nexus-create-snapshot
+
+# Smart profile selection
+nexus-smart-focus
+
+# Emergency system reset
+nexus-emergency-reset
+```
+
+## 🤝 **Contributing**
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+### Development Workflow
+
 1. Fork the repository
-2. Create feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open Pull Request
+2. Create a feature branch
+3. Make your changes
+4. Add tests
+5. Submit a pull request
 
-### **Issue Reporting**
-- Use GitHub Issues for bug reports
-- Include system information and logs
-- Provide reproducible test cases
-- Follow the issue template
-
-## 📄 License
+## 📄 **License**
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-### **Third-Party Licenses**
-- **YABAI**: MIT License
-- **MLX**: Apache 2.0 License
-- **Streamlit**: Apache 2.0 License
-- **Transformers**: Apache 2.0 License
+## 🙏 **Acknowledgments**
 
-## 🙏 Acknowledgments
+- **YABAI**: Tiling window manager for macOS
+- **SKHD**: Global hotkey daemon
+- **BetterTouchTool**: Advanced gesture recognition
+- **Keyboard Maestro**: Powerful automation tool
+- **Apple Shortcuts**: Native macOS automation
+- **MLX**: Apple's machine learning framework
 
-- **YABAI Team**: Tiling window manager foundation
-- **Apple**: Apple Silicon and Neural Engine optimization
-- **MLX Team**: Apple Silicon AI framework
-- **Open Source Community**: Libraries and tools
+## 🆘 **Support**
 
-## 📞 Support
-
-### **Documentation**
-- **User Guide**: `docs/user-guides/USER_GUIDE.md`
-- **Installation**: `docs/installation/INSTALLATION.md`
-- **Interactive Guide**: `docs/user-guides/INTERACTIVE_GUIDE.md`
-- **API Documentation**: `docs/api/`
-
-### **Community**
-- **GitHub Issues**: Bug reports and feature requests
-- **Discussions**: Community support and questions
-- **Wiki**: User-contributed documentation
-
-### **Professional Support**
-- **Enterprise**: Custom deployments and support
-- **Consulting**: Workspace optimization services
-- **Training**: Workshops and training sessions
+- **Documentation**: Check the docs folder
+- **Issues**: Report bugs on GitHub
+- **Discussions**: Join the community
+- **Wiki**: Additional resources
 
 ---
 
-## 🎉 Get Started
+**🚀 Transform your workspace with NEXUS Enhanced Automations - The future of productivity is here!**
 
-**Ready to transform your workspace with AI-powered intelligence?**
-
-```bash
-# Quick start
-git clone https://github.com/yourusername/NEXUS.git
-cd NEXUS
-chmod +x *.sh scripts/*.sh configs/profiles/*.sh
-./launcher.sh
-```
-
-**🚀 NEXUS - Your AI-Powered Workspace Intelligence System**
-
-*Transform your multi-display workflow with intelligent automation!* 🎯
-
----
-
-**Built with ❤️ for macOS and Apple Silicon** 
+*Built with ❤️ for Apple Silicon and powered by AI intelligence*

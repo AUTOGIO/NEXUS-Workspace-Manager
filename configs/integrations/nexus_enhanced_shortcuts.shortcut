@@ -1,0 +1,292 @@
+{
+  "Apple Shortcuts": {
+    "version": "1.0",
+    "name": "NEXUS Enhanced Shortcuts",
+    "description": "Advanced Apple Shortcuts for NEXUS AI-Powered Workspace Intelligence",
+    "author": "Eduardo Giovannini",
+    "created": "2024-12-19",
+    "shortcuts": [
+      {
+        "name": "🎨 NEXUS Master Control",
+        "description": "Master control center for all NEXUS features",
+        "icon": "🎨",
+        "category": "Workspace Management",
+        "actions": [
+          {
+            "type": "menu",
+            "title": "Select NEXUS Action",
+            "options": [
+              "🚀 Load Workspace Profile",
+              "🤖 AI Integration",
+              "🖥️ YABAI Management",
+              "📊 System Monitoring",
+              "⚙️ Configuration",
+              "🆘 Emergency Actions"
+            ]
+          }
+        ],
+        "enabled": true,
+        "priority": 1
+      },
+      {
+        "name": "🚀 Smart Profile Launcher",
+        "description": "AI-powered workspace profile selection",
+        "icon": "🚀",
+        "category": "AI Integration",
+        "actions": [
+          {
+            "type": "script",
+            "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\npython tools/ai/yabai_automation_bridge.py --smart-profile-selection",
+            "description": "AI analyzes current context and suggests optimal profile"
+          }
+        ],
+        "enabled": true,
+        "priority": 2
+      },
+      {
+        "name": "🧠 Neural Workspace Optimization",
+        "description": "AI-powered workspace optimization and arrangement",
+        "icon": "🧠",
+        "category": "AI Integration",
+        "actions": [
+          {
+            "type": "script",
+            "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\npython tools/ai/yabai_automation_bridge.py --optimize-workspace",
+            "description": "AI analyzes and optimizes current workspace layout"
+          }
+        ],
+        "enabled": true,
+        "priority": 3
+      },
+      {
+        "name": "📱 Multi-Display Manager",
+        "description": "Advanced multi-display workspace management",
+        "icon": "📱",
+        "category": "Window Management",
+        "actions": [
+          {
+            "type": "menu",
+            "title": "Display Management",
+            "options": [
+              "🔄 Rotate Layout",
+              "📐 Optimize Arrangement",
+              "🎯 Focus Management",
+              "⚡ Performance Mode"
+            ]
+          }
+        ],
+        "enabled": true,
+        "priority": 4
+      },
+      {
+        "name": "⚡ Performance Dashboard",
+        "description": "Real-time performance monitoring and optimization",
+        "icon": "⚡",
+        "category": "System Management",
+        "actions": [
+          {
+            "type": "script",
+            "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\n./scripts/setup/launcher.sh dashboard",
+            "description": "Launch NEXUS performance dashboard"
+          }
+        ],
+        "enabled": true,
+        "priority": 5
+      },
+      {
+        "name": "🎯 Context-Aware Assistant",
+        "description": "AI-powered context awareness and suggestions",
+        "icon": "🎯",
+        "category": "AI Integration",
+        "actions": [
+          {
+            "type": "script",
+            "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\npython tools/ai/yabai_automation_bridge.py --context-analysis",
+            "description": "AI analyzes current context and provides suggestions"
+          }
+        ],
+        "enabled": true,
+        "priority": 6
+      },
+      {
+        "name": "🔄 Auto-Scheduler",
+        "description": "Intelligent workspace scheduling based on time and context",
+        "icon": "🔄",
+        "category": "Automation",
+        "actions": [
+          {
+            "type": "script",
+            "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\npython tools/ai/yabai_automation_bridge.py --auto-schedule",
+            "description": "AI automatically schedules workspace changes"
+          }
+        ],
+        "enabled": true,
+        "priority": 7
+      },
+      {
+        "name": "🛡️ Security & Privacy",
+        "description": "Security and privacy management for NEXUS",
+        "icon": "🛡️",
+        "category": "System Management",
+        "actions": [
+          {
+            "type": "menu",
+            "title": "Security Options",
+            "options": [
+              "🔒 Lock Workspace",
+              "🔄 Secure Profile Switch",
+              "📊 Privacy Report",
+              "🧹 Clean Data"
+            ]
+          }
+        ],
+        "enabled": true,
+        "priority": 8
+      },
+      {
+        "name": "🎨 Creative Mode",
+        "description": "Optimized workspace for creative work",
+        "icon": "🎨",
+        "category": "Productivity",
+        "actions": [
+          {
+            "type": "script",
+            "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\n./scripts/setup/launcher.sh content_creation_profile",
+            "description": "Load creative workspace profile"
+          }
+        ],
+        "enabled": true,
+        "priority": 9
+      },
+      {
+        "name": "🔧 Development Mode",
+        "description": "Optimized workspace for development work",
+        "icon": "🔧",
+        "category": "Productivity",
+        "actions": [
+          {
+            "type": "script",
+            "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\n./scripts/setup/launcher.sh ai_development_profile",
+            "description": "Load development workspace profile"
+          }
+        ],
+        "enabled": true,
+        "priority": 10
+      },
+      {
+        "name": "📚 Learning Mode",
+        "description": "Optimized workspace for learning and study",
+        "icon": "📚",
+        "category": "Productivity",
+        "actions": [
+          {
+            "type": "script",
+            "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\n./scripts/setup/launcher.sh learning_profile",
+            "description": "Load learning workspace profile"
+          }
+        ],
+        "enabled": true,
+        "priority": 11
+      },
+      {
+        "name": "🎮 Gaming Mode",
+        "description": "Optimized workspace for gaming and entertainment",
+        "icon": "🎮",
+        "category": "Productivity",
+        "actions": [
+          {
+            "type": "script",
+            "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\n./scripts/setup/launcher.sh gaming_profile",
+            "description": "Load gaming workspace profile"
+          }
+        ],
+        "enabled": true,
+        "priority": 12
+      },
+      {
+        "name": "🚀 Personal Mode",
+        "description": "Optimized workspace for personal use",
+        "icon": "🚀",
+        "category": "Productivity",
+        "actions": [
+          {
+            "type": "script",
+            "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\n./scripts/setup/launcher.sh personal_profile",
+            "description": "Load personal workspace profile"
+          }
+        ],
+        "enabled": true,
+        "priority": 13
+      },
+      {
+        "name": "🏢 Business Mode",
+        "description": "Optimized workspace for business and meetings",
+        "icon": "🏢",
+        "category": "Productivity",
+        "actions": [
+          {
+            "type": "script",
+            "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\n./scripts/setup/launcher.sh business_profile",
+            "description": "Load business workspace profile"
+          }
+        ],
+        "enabled": true,
+        "priority": 14
+      },
+      {
+        "name": "🎯 Focus Mode",
+        "description": "Distraction-free workspace for deep work",
+        "icon": "🎯",
+        "category": "Productivity",
+        "actions": [
+          {
+            "type": "script",
+            "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\n./scripts/setup/launcher.sh focus_profile",
+            "description": "Load focus workspace profile"
+          }
+        ],
+        "enabled": true,
+        "priority": 15
+      },
+      {
+        "name": "🆘 Emergency Actions",
+        "description": "Emergency system recovery and troubleshooting",
+        "icon": "🆘",
+        "category": "System Management",
+        "actions": [
+          {
+            "type": "menu",
+            "title": "Emergency Options",
+            "options": [
+              "🔄 Restart YABAI",
+              "🔄 Restart SKHD",
+              "🧹 Clear Issues",
+              "📊 System Status"
+            ]
+          }
+        ],
+        "enabled": true,
+        "priority": 16
+      }
+    ],
+    "settings": {
+      "shortcut_recognition": "high_sensitivity",
+      "visual_feedback": true,
+      "sound_feedback": true,
+      "shortcut_timeout": 2000,
+      "priority_system": true,
+      "category_colors": {
+        "Workspace Management": "#1f77b4",
+        "AI Integration": "#d62728",
+        "Productivity": "#ff7f0e",
+        "Window Management": "#2ca02c",
+        "System Management": "#9467bd",
+        "Automation": "#8c564b"
+      },
+      "global_shortcuts": true,
+      "app_specific_shortcuts": false,
+      "voice_activation": true,
+      "widget_support": true
+    }
+  }
+}

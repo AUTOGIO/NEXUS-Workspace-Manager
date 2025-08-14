@@ -1,0 +1,92 @@
+{
+  "name": "NEXUS Webhook Handler",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "nexus-webhook",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook",
+      "name": "NEXUS Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.event_type }}",
+              "operation": "equal",
+              "value2": "workspace_change"
+            }
+          ]
+        }
+      },
+      "id": "filter",
+      "name": "Filter Events",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Process NEXUS event\nconst event = $input.first().json;\n\n// Extract relevant data\nconst eventType = event.event_type;\nconst profile = event.profile;\nconst apps = event.apps || [];\nconst display = event.display;\n\n// Create response\nconst response = {\n  status: 'processed',\n  event_type: eventType,\n  actions: [],\n  timestamp: new Date().toISOString()\n};\n\n// Add actions based on event type\nswitch (eventType) {\n  case 'workspace_change':\n    response.actions.push({\n      action: 'switch_profile',\n      profile: profile,\n      apps: apps\n    });\n    break;\n  case 'app_launch':\n    response.actions.push({\n      action: 'optimize_layout',\n      app: apps[0],\n      display: display\n    });\n    break;\n  case 'display_change':\n    response.actions.push({\n      action: 'reconfigure_displays',\n      displays: event.displays\n    });\n    break;\n  case 'test':\n    response.actions.push({\n      action: 'webhook_test',\n      message: 'NEXUS webhook working!'\n    });\n    break;\n}\n\nreturn response;"
+      },
+      "id": "processor",
+      "name": "Process Event",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}"
+      },
+      "id": "response",
+      "name": "Send Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [900, 300]
+    }
+  ],
+  "connections": {
+    "webhook": {
+      "main": [
+        [
+          {
+            "node": "filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "filter": {
+      "main": [
+        [
+          {
+            "node": "processor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "processor": {
+      "main": [
+        [
+          {
+            "node": "response",
+            "type": "main",
+            "index": 0"
+          }
+        ]
+      ]
+    }
+  }
+}

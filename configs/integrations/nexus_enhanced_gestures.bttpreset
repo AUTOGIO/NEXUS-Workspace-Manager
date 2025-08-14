@@ -1,0 +1,181 @@
+{
+  "BetterTouchTool": {
+    "version": "1.0",
+    "name": "NEXUS Enhanced Gestures",
+    "description": "Advanced gesture controls for NEXUS AI-Powered Workspace Intelligence",
+    "author": "Eduardo Giovannini",
+    "created": "2024-12-19",
+    "gestures": [
+      {
+        "name": "🎨 NEXUS Profile Switcher",
+        "trigger": "3-finger swipe up + hold",
+        "action": "show_radial_menu",
+        "description": "Show radial menu with all 12 workspace profiles",
+        "category": "Workspace Management",
+        "icon": "🎨",
+        "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\n./scripts/setup/launcher.sh",
+        "enabled": true,
+        "priority": 1
+      },
+      {
+        "name": "🎯 Deep Focus Mode Toggle",
+        "trigger": "4-finger pinch in",
+        "action": "run_script",
+        "description": "Toggle focus profile, hide distractions, optimize for deep work",
+        "category": "Productivity",
+        "icon": "🎯",
+        "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\n./scripts/setup/launcher.sh focus_profile",
+        "enabled": true,
+        "priority": 2
+      },
+      {
+        "name": "🧠 Intelligent Layout",
+        "trigger": "3-finger swipe down + hold",
+        "action": "run_script",
+        "description": "Analyze current apps, arrange windows optimally using AI suggestions",
+        "category": "Window Management",
+        "icon": "🧠",
+        "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\npython tools/ai/yabai_automation_bridge.py --optimize-layout",
+        "enabled": true,
+        "priority": 3
+      },
+      {
+        "name": "👁️ Smart Focus North",
+        "trigger": "2-finger swipe up",
+        "action": "run_script",
+        "description": "Focus window above with AI-powered context awareness",
+        "category": "Window Management",
+        "icon": "👁️",
+        "script": "#!/bin/bash\nyabai-focus-north",
+        "enabled": true,
+        "priority": 4
+      },
+      {
+        "name": "👁️ Smart Focus South",
+        "trigger": "2-finger swipe down",
+        "action": "run_script",
+        "description": "Focus window below with AI-powered context awareness",
+        "category": "Window Management",
+        "icon": "👁️",
+        "script": "#!/bin/bash\nyabai-focus-south",
+        "enabled": true,
+        "priority": 4
+      },
+      {
+        "name": "👁️ Smart Focus East",
+        "trigger": "2-finger swipe right",
+        "action": "run_script",
+        "description": "Focus window right with AI-powered context awareness",
+        "category": "Window Management",
+        "icon": "👁️",
+        "script": "#!/bin/bash\nyabai-focus-east",
+        "enabled": true,
+        "priority": 4
+      },
+      {
+        "name": "👁️ Smart Focus West",
+        "trigger": "2-finger swipe left",
+        "action": "run_script",
+        "description": "Focus window left with AI-powered context awareness",
+        "category": "Window Management",
+        "icon": "👁️",
+        "script": "#!/bin/bash\nyabai-focus-west",
+        "enabled": true,
+        "priority": 4
+      },
+      {
+        "name": "🧠 Neural Optimization",
+        "trigger": "4-finger swipe up + hold",
+        "action": "run_script",
+        "description": "Run AI analysis of current workspace, suggest optimizations",
+        "category": "AI Integration",
+        "icon": "🧠",
+        "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\npython tools/ai/yabai_automation_bridge.py --analyze-workspace",
+        "enabled": true,
+        "priority": 5
+      },
+      {
+        "name": "🎨 Creative Flow",
+        "trigger": "3-finger swipe left + hold",
+        "action": "run_script",
+        "description": "Load content creation profile, launch creative tools, set inspirational layout",
+        "category": "Productivity",
+        "icon": "🎨",
+        "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\n./scripts/setup/launcher.sh content_creation_profile",
+        "enabled": true,
+        "priority": 6
+      },
+      {
+        "name": "🌅 Sunrise Setup",
+        "trigger": "5-finger tap",
+        "action": "run_script",
+        "description": "Load work profile, launch daily apps, set productivity mode (morning hours 6-9 AM)",
+        "category": "Productivity",
+        "icon": "🌅",
+        "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\n./scripts/setup/launcher.sh work_profile",
+        "enabled": true,
+        "priority": 7,
+        "time_restriction": "06:00-09:00"
+      },
+      {
+        "name": "🩺 NEXUS Doctor",
+        "trigger": "4-finger swipe down + hold",
+        "action": "run_script",
+        "description": "Run system diagnostics, check YABAI status, suggest fixes",
+        "category": "System Management",
+        "icon": "🩺",
+        "script": "#!/bin/bash\ncd ~/Library/Mobile\\ Documents/com~apple~CloudDocs/Obsidian/Projects/FINALIZADO/YABAI\n./scripts/setup/launcher.sh status",
+        "enabled": true,
+        "priority": 8
+      },
+      {
+        "name": "🔄 Window Float Toggle",
+        "trigger": "3-finger pinch in",
+        "action": "run_script",
+        "description": "Toggle current window float state",
+        "category": "Window Management",
+        "icon": "🔄",
+        "script": "#!/bin/bash\nyabai-toggle-float",
+        "enabled": true,
+        "priority": 9
+      },
+      {
+        "name": "📱 Space Navigation",
+        "trigger": "3-finger swipe up (quick)",
+        "action": "run_script",
+        "description": "Navigate to next space",
+        "category": "Space Management",
+        "icon": "📱",
+        "script": "#!/bin/bash\ncurrent_space=$(yabai -m query --spaces --space | jq -r '.index')\nnext_space=$((current_space % 6 + 1))\nyabai-switch-space $next_space",
+        "enabled": true,
+        "priority": 10
+      },
+      {
+        "name": "📱 Space Navigation Back",
+        "trigger": "3-finger swipe down (quick)",
+        "action": "run_script",
+        "description": "Navigate to previous space",
+        "category": "Space Management",
+        "icon": "📱",
+        "script": "#!/bin/bash\ncurrent_space=$(yabai -m query --spaces --space | jq -r '.index')\nprev_space=$((current_space - 1))\nif [ $prev_space -lt 1 ]; then prev_space=6; fi\nyabai-switch-space $prev_space",
+        "enabled": true,
+        "priority": 10
+      }
+    ],
+    "settings": {
+      "gesture_recognition": "high_sensitivity",
+      "visual_feedback": true,
+      "haptic_feedback": true,
+      "gesture_timeout": 500,
+      "priority_system": true,
+      "category_colors": {
+        "Workspace Management": "#1f77b4",
+        "Productivity": "#ff7f0e",
+        "Window Management": "#2ca02c",
+        "AI Integration": "#d62728",
+        "System Management": "#9467bd",
+        "Space Management": "#8c564b"
+      }
+    }
+  }
+}

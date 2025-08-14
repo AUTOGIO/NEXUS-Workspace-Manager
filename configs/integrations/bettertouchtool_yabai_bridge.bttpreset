@@ -1,0 +1,116 @@
+{
+  "BetterTouchTool": {
+    "version": "3.0",
+    "preset_name": "YABAI Window Management Bridge",
+    "description": "Gesture-based window management to complement YABAI tiling",
+    "gestures": [
+      {
+        "name": "Focus Window North",
+        "trigger": "swipe_up",
+        "action": "execute_script",
+        "script": "focus_window_north",
+        "enabled": true,
+        "conditions": {
+          "app": "any",
+          "display": "any"
+        }
+      },
+      {
+        "name": "Focus Window South",
+        "trigger": "swipe_down", 
+        "action": "execute_script",
+        "script": "focus_window_south",
+        "enabled": true,
+        "conditions": {
+          "app": "any",
+          "display": "any"
+        }
+      },
+      {
+        "name": "Focus Window East",
+        "trigger": "swipe_right",
+        "action": "execute_script", 
+        "script": "focus_window_east",
+        "enabled": true,
+        "conditions": {
+          "app": "any",
+          "display": "any"
+        }
+      },
+      {
+        "name": "Focus Window West",
+        "trigger": "swipe_left",
+        "action": "execute_script",
+        "script": "focus_window_west", 
+        "enabled": true,
+        "conditions": {
+          "app": "any",
+          "display": "any"
+        }
+      },
+      {
+        "name": "Toggle Window Float",
+        "trigger": "pinch_in",
+        "action": "execute_script",
+        "script": "toggle_window_float",
+        "enabled": true,
+        "conditions": {
+          "app": "any",
+          "display": "any"
+        }
+      },
+      {
+        "name": "Switch to Space 1",
+        "trigger": "swipe_up_2_fingers",
+        "action": "execute_script",
+        "script": "switch_space_1",
+        "enabled": true,
+        "conditions": {
+          "app": "any",
+          "display": "any"
+        }
+      },
+      {
+        "name": "Switch to Space 2",
+        "trigger": "swipe_down_2_fingers",
+        "action": "execute_script", 
+        "script": "switch_space_2",
+        "enabled": true,
+        "conditions": {
+          "app": "any",
+          "display": "any"
+        }
+      }
+    ],
+    "scripts": {
+      "focus_window_north": {
+        "type": "applescript",
+        "code": "tell application \"System Events\"\n  key code 126 using {command down, shift down}\nend tell"
+      },
+      "focus_window_south": {
+        "type": "applescript",
+        "code": "tell application \"System Events\"\n  key code 125 using {command down, shift down}\nend tell"
+      },
+      "focus_window_east": {
+        "type": "applescript",
+        "code": "tell application \"System Events\"\n  key code 124 using {command down, shift down}\nend tell"
+      },
+      "focus_window_west": {
+        "type": "applescript",
+        "code": "tell application \"System Events\"\n  key code 123 using {command down, shift down}\nend tell"
+      },
+      "toggle_window_float": {
+        "type": "applescript",
+        "code": "tell application \"System Events\"\n  key code 3 using {command down, shift down}\nend tell"
+      },
+      "switch_space_1": {
+        "type": "applescript",
+        "code": "tell application \"System Events\"\n  key code 18 using {control down}\nend tell"
+      },
+      "switch_space_2": {
+        "type": "applescript",
+        "code": "tell application \"System Events\"\n  key code 19 using {control down}\nend tell"
+      }
+    }
+  }
+}
