@@ -29,7 +29,7 @@ displays:
 always_visible_apps: ["ChatGPT", "Grok"]
 
 # Floating windows (never tiled)
-floating_apps: ["Finder", "iTerm", "Terminal", "System Settings", "One Thing", "Caffeine", "ActivityWatch", "iStatistica Pro", "iStatistica Sensors", "Boom 3D", "Music"]
+floating_apps: ["Finder", "Terminal", "iTerm", "iTerm2", "System Settings", "System Preferences", "One Thing", "Caffeine", "ActivityWatch", "iStatistica Pro", "iStatistica Sensors", "Boom 3D", "Music"]
 
 # Workspace Profiles
 profiles:

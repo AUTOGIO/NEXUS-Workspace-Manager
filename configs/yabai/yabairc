@@ -21,8 +21,6 @@ yabai -m rule --add display:2 gap abs:5
 
 # Development Tools - Always Tile
 yabai -m rule --add app="^Cursor$" display=any layout=bsp float=off
-yabai -m rule --add app="^iTerm$" display=any layout=bsp float=off
-yabai -m rule --add app="^iTerm2$" display=any layout=bsp float=off
 yabai -m rule --add app="^Code$" display=any layout=bsp float=off
 yabai -m rule --add app="^Xcode$" display=any layout=bsp float=off
 
@@ -68,7 +66,7 @@ yabai -m rule --add app="^Boom 3D$" float=on
 yabai -m rule --add app="^Music$" float=on
 yabai -m rule --add app="^Spotify$" float=on
 
-# Terminal Apps - Float for better usability
+# Terminal Apps - Always Float for Better Usability
 yabai -m rule --add app="^Terminal$" float=on
 yabai -m rule --add app="^iTerm$" float=on
 yabai -m rule --add app="^iTerm2$" float=on
