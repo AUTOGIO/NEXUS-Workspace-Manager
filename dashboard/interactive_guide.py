@@ -19,6 +19,7 @@ import psutil
 import platform
 from typing import Dict, List, Any
 from api_keys_ui import render_api_keys_panel
+from model_management_ui import render_model_management_panel
 
 # Add project root to path for imports
 project_root = Path(__file__).parent.parent
@@ -256,6 +257,7 @@ def main():
             "⚙️ Workspace Profiles",
             "📊 Performance Monitoring",
             "🔐 API Keys",
+            "🤖 Local AI Models",
             "🔧 System Configuration",
             "📚 Documentation",
             "🛠️ Tools & Utilities"
@@ -275,6 +277,10 @@ def main():
         show_yabai_management(dashboard)
     elif page == "🔐 API Keys":
         render_api_keys_panel()
+    
+    # Local AI Models
+    elif page == "🤖 Local AI Models":
+        render_model_management_panel()
     
     # Workspace Profiles
     elif page == "⚙️ Workspace Profiles":
