@@ -8,12 +8,22 @@ displays:
     name: "34' Curved Display (Main)"
     purpose: "Primary Development & Content"
     apps: ["Cursor", "iTerm", "Vivaldi", "Perplexity", "YouTube", "Safari", "Ollama", "LM Studio", "Wondershare Filmora Mac", "PhotoScapeX", "Google Chrome"]
+    # Enable automatic tiling for this display
+    auto_tile: true
+    layout: "bsp"
+    padding: "abs:10:10:10:10"
+    gap: "abs:5"
     
   right:
     id: 2
     name: "iMac 24' Display"
     purpose: "Communication & Productivity"
     apps: ["Obsidian", "Notes", "WhatsApp", "X", "Telegram", "Microsoft Excel", "Pages", "Numbers", "One Thing"]
+    # Enable automatic tiling for this display
+    auto_tile: true
+    layout: "bsp"
+    padding: "abs:10:10:10:10"
+    gap: "abs:5"
 
 # Always visible across all spaces and profiles
 always_visible_apps: ["ChatGPT", "Grok"]
@@ -146,11 +156,38 @@ yabai_settings:
   mouse_action1: "move"
   mouse_action2: "resize"
   
-  # Layout settings
+  # Layout settings - CRITICAL: Enable automatic tiling for ALL displays
   layout: "bsp"
   auto_balance: "on"
   split_ratio: "0.5"
   split_type: "auto"
+  
+  # Display-specific tiling rules
+  display_tiling_rules:
+    # Rule 1: All displays should tile automatically
+    - rule: "display:1"
+      layout: "bsp"
+      auto_balance: "on"
+      padding: "abs:10:10:10:10"
+      gap: "abs:5"
+    
+    - rule: "display:2"
+      layout: "bsp"
+      auto_balance: "on"
+      padding: "abs:10:10:10:10"
+      gap: "abs:5"
+    
+    # Rule 2: Force tiling for specific apps on all displays
+    - rule: "app:^(Cursor|iTerm|Vivaldi|Safari|Obsidian|Notes)$"
+      display: "any"
+      layout: "bsp"
+      float: "off"
+    
+    # Rule 3: Ensure windows are tiled by default
+    - rule: "app:.*"
+      display: "any"
+      float: "off"
+      layout: "bsp"
 
 # External Integrations
 integrations:
@@ -175,4 +212,35 @@ performance:
   rule_cache_enabled: true
   display_detection_interval: 30  # seconds
   status_update_interval: 10      # seconds
-  dashboard_refresh_rate: 5       # seconds 
+  dashboard_refresh_rate: 5       # seconds
+
+# Auto-tiling Rules - CRITICAL SECTION
+auto_tiling_rules:
+  # Force tiling for all displays
+  - rule: "display:1"
+    layout: "bsp"
+    auto_balance: "on"
+    padding: "abs:10:10:10:10"
+    gap: "abs:5"
+    float: "off"
+  
+  - rule: "display:2"
+    layout: "bsp"
+    auto_balance: "on"
+    padding: "abs:10:10:10:10"
+    gap: "abs:5"
+    float: "off"
+  
+  # Ensure all windows are tiled by default
+  - rule: "app:.*"
+    float: "off"
+    layout: "bsp"
+    display: "any"
+  
+  # Specific app tiling rules
+  - rule: "app:^(Cursor|iTerm|Vivaldi|Safari|Obsidian|Notes|WhatsApp|Telegram)$"
+    float: "off"
+    layout: "bsp"
+    display: "any"
+    padding: "abs:10:10:10:10"
+    gap: "abs:5" 

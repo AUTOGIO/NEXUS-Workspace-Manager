@@ -1,0 +1,135 @@
+# YABAI Rules Configuration
+# Ensures automatic tiling for both displays
+
+# ========================================
+# 🎯 DISPLAY-SPECIFIC TILING RULES
+# ========================================
+
+# Force BSP layout and tiling for Display 1 (34" Curved Display)
+yabai -m rule --add display:1 layout bsp
+yabai -m rule --add display:1 padding abs:10:10:10:10
+yabai -m rule --add display:1 gap abs:5
+
+# Force BSP layout and tiling for Display 2 (24" iMac Display)
+yabai -m rule --add display:2 layout bsp
+yabai -m rule --add display:2 padding abs:10:10:10:10
+yabai -m rule --add display:2 gap abs:5
+
+# ========================================
+# 🪟 APPLICATION-SPECIFIC TILING RULES
+# ========================================
+
+# Development Tools - Always Tile
+yabai -m rule --add app="^Cursor$" display=any layout=bsp float=off
+yabai -m rule --add app="^iTerm$" display=any layout=bsp float=off
+yabai -m rule --add app="^iTerm2$" display=any layout=bsp float=off
+yabai -m rule --add app="^Code$" display=any layout=bsp float=off
+yabai -m rule --add app="^Xcode$" display=any layout=bsp float=off
+
+# Browsers - Always Tile
+yabai -m rule --add app="^Safari$" display=any layout=bsp float=off
+yabai -m rule --add app="^Vivaldi$" display=any layout=bsp float=off
+yabai -m rule --add app="^Google Chrome$" display=any layout=bsp float=off
+yabai -m rule --add app="^Firefox$" display=any layout=bsp float=off
+
+# Productivity Tools - Always Tile
+yabai -m rule --add app="^Obsidian$" display=any layout=bsp float=off
+yabai -m rule --add app="^Notes$" display=any layout=bsp float=off
+yabai -m rule --add app="^WhatsApp$" display=any layout=bsp float=off
+yabai -m rule --add app="^Telegram$" display=any layout=bsp float=off
+yabai -m rule --add app="^X$" display=any layout=bsp float=off
+
+# AI Tools - Always Tile
+yabai -m rule --add app="^ChatGPT$" display=any layout=bsp float=off
+yabai -m rule --add app="^Grok$" display=any layout=bsp float=off
+yabai -m rule --add app="^Ollama$" display=any layout=bsp float=off
+yabai -m rule --add app="^LM Studio$" display=any layout=bsp float=off
+
+# Creative Tools - Always Tile
+yabai -m rule --add app="^PhotoScapeX$" display=any layout=bsp float=off
+yabai -m rule --add app="^Wondershare Filmora Mac$" display=any layout=bsp float=off
+yabai -m rule --add app="^Final Cut Pro$" display=any layout=bsp float=off
+yabai -m rule --add app="^Logic Pro$" display=any layout=bsp float=off
+
+# ========================================
+# 🚫 FLOATING WINDOWS (Never Tile)
+# ========================================
+
+# System and Utility Apps - Always Float
+yabai -m rule --add app="^Finder$" float=on
+yabai -m rule --add app="^System Settings$" float=on
+yabai -m rule --add app="^System Preferences$" float=on
+yabai -m rule --add app="^One Thing$" float=on
+yabai -m rule --add app="^Caffeine$" float=on
+yabai -m rule --add app="^ActivityWatch$" float=on
+yabai -m rule --add app="^iStatistica Pro$" float=on
+yabai -m rule --add app="^iStatistica Sensors$" float=on
+yabai -m rule --add app="^Boom 3D$" float=on
+yabai -m rule --add app="^Music$" float=on
+yabai -m rule --add app="^Spotify$" float=on
+
+# Terminal Apps - Float for better usability
+yabai -m rule --add app="^Terminal$" float=on
+yabai -m rule --add app="^iTerm$" float=on
+yabai -m rule --add app="^iTerm2$" float=on
+
+# ========================================
+# 🎨 WINDOW BEHAVIOR RULES
+# ========================================
+
+# Force all other apps to tile by default
+yabai -m rule --add app=".*" display=any layout=bsp float=off
+
+# Ensure windows are not sticky by default
+yabai -m rule --add app=".*" sticky=off
+
+# Set default window level
+yabai -m rule --add app=".*" level=normal
+
+# ========================================
+# 🔄 SPACE MANAGEMENT RULES
+# ========================================
+
+# Auto-balance spaces on all displays
+yabai -m space --balance
+
+# Set default padding and gap for all spaces
+yabai -m space --padding abs:10:10:10:10
+yabai -m space --gap abs:5
+
+# ========================================
+# 📱 DISPLAY DETECTION AND RULES
+# ========================================
+
+# Monitor for display changes and apply rules
+yabai -m signal --add event=display_changed action="yabai -m space --layout bsp && yabai -m space --padding abs:10:10:10:10 && yabai -m space --gap abs:5"
+
+# Monitor for space changes and apply rules
+yabai -m signal --add event=space_changed action="yabai -m space --layout bsp && yabai -m space --padding abs:10:10:10:10 && yabai -m space --gap abs:5"
+
+# Monitor for window creation and ensure tiling
+yabai -m signal --add event=window_created action="yabai -m window --tile"
+
+# ========================================
+# ⚡ PERFORMANCE OPTIMIZATIONS
+# ========================================
+
+# Enable rule caching
+yabai -m config rule_cache_enabled on
+
+# Set update intervals
+yabai -m config status_update_interval 10
+yabai -m config display_detection_interval 30
+
+# ========================================
+# 🎯 NEXUS-SPECIFIC RULES
+# ========================================
+
+# Ensure NEXUS dashboard windows are tiled
+yabai -m rule --add title=".*NEXUS.*" display=any layout=bsp float=off
+
+# Ensure AI model manager windows are tiled
+yabai -m rule --add title=".*AI Model Manager.*" display=any layout=bsp float=off
+
+# Ensure Streamlit dashboard windows are tiled
+yabai -m rule --add title=".*Streamlit.*" display=any layout=bsp float=off
