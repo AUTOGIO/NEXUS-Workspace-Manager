@@ -18,6 +18,7 @@ from pathlib import Path
 import psutil
 import platform
 from typing import Dict, List, Any
+from api_keys_ui import render_api_keys_panel
 
 # Add project root to path for imports
 project_root = Path(__file__).parent.parent
@@ -233,6 +234,7 @@ def main():
             "🖥️ YABAI Management",
             "⚙️ Workspace Profiles",
             "📊 Performance Monitoring",
+            "🔐 API Keys",
             "🔧 System Configuration",
             "📚 Documentation",
             "🛠️ Tools & Utilities"
@@ -250,6 +252,8 @@ def main():
     # YABAI Management
     elif page == "🖥️ YABAI Management":
         show_yabai_management(dashboard)
+    elif page == "🔐 API Keys":
+        render_api_keys_panel()
     
     # Workspace Profiles
     elif page == "⚙️ Workspace Profiles":
@@ -462,20 +466,21 @@ def show_yabai_management(dashboard: NEXUSDashboard):
                 st.error(f"Failed to restart YABAI: {output}")
 
 def show_workspace_profiles(dashboard: NEXUSDashboard):
-    """Show workspace profiles section."""
+    """Show workspace profiles section (limited to 5 entries)."""
     st.header("⚙️ Workspace Profiles")
     
     # Available Profiles
     st.subheader("📋 Available Profiles")
     
     profiles = dashboard.get_available_profiles()
-    
-    if profiles:
-        st.write(f"Found {len(profiles)} workspace profiles:")
+    limited_profiles = profiles[:5]
+
+    if limited_profiles:
+        st.write(f"Found {len(limited_profiles)} workspace profiles (showing up to 5):")
         
         # Display profiles in columns
         cols = st.columns(3)
-        for i, profile in enumerate(profiles):
+        for i, profile in enumerate(limited_profiles):
             col = cols[i % 3]
             if col.button(f"🚀 {profile}", key=f"profile_{profile}", use_container_width=True):
                 if dashboard.load_profile(profile):

@@ -1,0 +1,14 @@
+# OpenAI API keys and other MCP integration keys
+# This file is intentionally simple and human-editable.
+
+openai:
+  key: ""
+  base_url: "https://api.openai.com/v1"
+anthropic:
+  key: ""
+  base_url: "https://api.anthropic.com"
+mcp:
+  key: ""
+  base_url: "https://api.example-mcp.com"
+
+
