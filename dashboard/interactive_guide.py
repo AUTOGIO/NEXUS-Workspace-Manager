@@ -43,18 +43,20 @@ st.markdown("""
         margin-bottom: 2rem;
     }
     .feature-card {
-        background-color: #f0f2f6;
+        background-color: #f8f9fa;
         padding: 1rem;
         border-radius: 0.5rem;
         margin: 0.5rem 0;
         border-left: 4px solid #1f77b4;
+        color: #212529;
     }
     .status-card {
-        background-color: #e8f5e8;
+        background-color: #d1ecf1;
         padding: 1rem;
         border-radius: 0.5rem;
         margin: 0.5rem 0;
-        border-left: 4px solid #28a745;
+        border-left: 4px solid #17a2b8;
+        color: #0c5460;
     }
     .warning-card {
         background-color: #fff3cd;
@@ -62,6 +64,7 @@ st.markdown("""
         border-radius: 0.5rem;
         margin: 0.5rem 0;
         border-left: 4px solid #ffc107;
+        color: #856404;
     }
     .error-card {
         background-color: #f8d7da;
@@ -69,6 +72,7 @@ st.markdown("""
         border-radius: 0.5rem;
         margin: 0.5rem 0;
         border-left: 4px solid #dc3545;
+        color: #721c24;
     }
     .metric-card {
         background-color: #ffffff;
@@ -77,6 +81,7 @@ st.markdown("""
         margin: 0.5rem 0;
         border: 1px solid #dee2e6;
         text-align: center;
+        color: #212529;
     }
     .metric-value {
         font-size: 2rem;
@@ -86,6 +91,22 @@ st.markdown("""
     .metric-label {
         font-size: 0.9rem;
         color: #6c757d;
+    }
+    .system-info-card {
+        background-color: #e3f2fd;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        margin: 0.5rem 0;
+        border-left: 4px solid #2196f3;
+        color: #0d47a1;
+    }
+    .python-env-card {
+        background-color: #f3e5f5;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        margin: 0.5rem 0;
+        border-left: 4px solid #9c27b0;
+        color: #4a148c;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -546,8 +567,8 @@ def show_system_configuration(dashboard: NEXUSDashboard):
     
     with col1:
         st.markdown(f"""
-        <div class="status-card">
-            <h4>System Details</h4>
+        <div class="system-info-card">
+            <h4>🖥️ System Details</h4>
             <strong>Platform:</strong> {system_info['platform']}<br>
             <strong>Version:</strong> {system_info['platform_version']}<br>
             <strong>Machine:</strong> {system_info['machine']}<br>
@@ -557,8 +578,8 @@ def show_system_configuration(dashboard: NEXUSDashboard):
     
     with col2:
         st.markdown(f"""
-        <div class="status-card">
-            <h4>Python Environment</h4>
+        <div class="python-env-card">
+            <h4>🐍 Python Environment</h4>
             <strong>Python Version:</strong> {system_info['python_version']}<br>
             <strong>CPU Cores:</strong> {system_info['cpu_count']}<br>
             <strong>Memory Total:</strong> {system_info['memory_total'] / (1024**3):.1f} GB<br>
