@@ -149,8 +149,13 @@ def display_models_grid(models: list[ModelMetadata]):
 
 def display_model_card(model: ModelMetadata):
     """Display a single model in a card format."""
+    # Create unique display name for models with duplicate names
+    display_name = model.name
+    if model.path.parent.name and model.path.parent.name != model.name:
+        display_name = f"{model.name} ({model.path.parent.name})"
+    
     # Create expandable card
-    with st.expander(f"🤖 {model.name}", expanded=False):
+    with st.expander(f"🤖 {display_name}", expanded=False):
         # Model info
         st.write(f"**📁 Path:** `{model.path}`")
         st.write(f"**💾 Size:** {model.size_human}")
@@ -177,17 +182,20 @@ def display_model_card(model: ModelMetadata):
         # Actions
         col1, col2, col3 = st.columns(3)
         
+        # Create unique keys using path hash to avoid duplicates
+        unique_key = str(hash(str(model.path)))
+        
         with col1:
-            if st.button("📊 Info", key=f"info_{model.name}", use_container_width=True):
+            if st.button("📊 Info", key=f"info_{unique_key}", use_container_width=True):
                 st.info(f"Detailed information for {model.name}")
         
         with col2:
-            if st.button("🚀 Launch", key=f"launch_{model.name}", use_container_width=True):
+            if st.button("🚀 Launch", key=f"launch_{unique_key}", use_container_width=True):
                 st.success(f"Launching {model.name}...")
                 # TODO: Implement model launching
         
         with col3:
-            if st.button("⚙️ Configure", key=f"config_{model.name}", use_container_width=True):
+            if st.button("⚙️ Configure", key=f"config_{unique_key}", use_container_width=True):
                 st.info(f"Configuring {model.name}...")
                 # TODO: Implement model configuration
 
