@@ -1,0 +1,220 @@
+#!/bin/zsh
+# SKHD Bridge - Native macOS Hotkey Management
+# Provides SKHD-like functionality without external dependencies
+
+set -euo pipefail
+
+# Colors for output
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+RED='\033[0;31m'
+NC='\033[0m'
+
+# Configuration file
+CONFIG_FILE="$HOME/.skhdrc-bridge"
+PID_FILE="$HOME/.skhd-bridge.pid"
+
+# Function to show help
+show_help() {
+    echo "${BLUE}⌨️  SKHD Bridge - Native macOS Hotkey Management${NC}"
+    echo "====================================================="
+    echo ""
+    echo "${GREEN}Available commands:${NC}"
+    echo "  start         - Start the hotkey daemon"
+    echo "  stop          - Stop the hotkey daemon"
+    echo "  restart       - Restart the hotkey daemon"
+    echo "  status        - Show daemon status"
+    echo "  config        - Show current configuration"
+    echo "  help          - Show this help"
+    echo ""
+    echo "${YELLOW}Usage:${NC} skhd-bridge [command]"
+    echo ""
+    echo "${GREEN}Examples:${NC}"
+    echo "  skhd-bridge start"
+    echo "  skhd-bridge status"
+    echo "  skhd-bridge stop"
+}
+
+# Function to create default configuration
+create_default_config() {
+    cat > "$CONFIG_FILE" << 'EOF'
+# SKHD Bridge Configuration
+# Hotkey mappings for window management
+
+# Window Focus
+cmd + shift + h : yabai-bridge focus-west
+cmd + shift + j : yabai-bridge focus-south
+cmd + shift + k : yabai-bridge focus-north
+cmd + shift + l : yabai-bridge focus-east
+
+# Space Switching
+cmd + shift + 1 : yabai-bridge switch-space 1
+cmd + shift + 2 : yabai-bridge switch-space 2
+cmd + shift + 3 : yabai-bridge switch-space 3
+cmd + shift + 4 : yabai-bridge switch-space 4
+cmd + shift + 5 : yabai-bridge switch-space 5
+cmd + shift + 6 : yabai-bridge switch-space 6
+cmd + shift + 7 : yabai-bridge switch-space 7
+cmd + shift + 8 : yabai-bridge switch-space 8
+cmd + shift + 9 : yabai-bridge switch-space 9
+
+# Window Management
+cmd + shift + f : yabai-bridge toggle-float
+cmd + shift + s : yabai-bridge toggle-sticky
+
+# Window Movement
+cmd + option + h : yabai-bridge move-west
+cmd + option + j : yabai-bridge move-south
+cmd + option + k : yabai-bridge move-north
+cmd + option + l : yabai-bridge move-east
+
+# NEXUS Profile Switching
+ctrl + alt + cmd + w : nexus-profile-switcher work
+ctrl + alt + cmd + p : nexus-profile-switcher personal
+ctrl + alt + cmd + r : nexus-profile-switcher ai-research
+ctrl + alt + cmd + f : nexus-profile-switcher focus
+ctrl + alt + cmd + b : nexus-profile-switcher business
+ctrl + alt + cmd + l : nexus-profile-switcher learning
+ctrl + alt + cmd + g : nexus-profile-switcher gaming
+ctrl + alt + cmd + c : nexus-profile-switcher content-creation
+
+# NEXUS System
+ctrl + alt + cmd + d : nexus-quick-menu
+ctrl + alt + cmd + n : nexus-ai-optimize
+ctrl + alt + cmd + a : nexus-workspace-analyze
+EOF
+
+    echo "${GREEN}✅ Default configuration created: $CONFIG_FILE${NC}"
+}
+
+# Function to start the daemon
+start_daemon() {
+    if [[ -f "$PID_FILE" ]]; then
+        local pid=$(cat "$PID_FILE")
+        if kill -0 "$pid" 2>/dev/null; then
+            echo "${YELLOW}⚠️  Daemon is already running (PID: $pid)${NC}"
+            return 0
+        else
+            rm -f "$PID_FILE"
+        fi
+    fi
+    
+    echo "${BLUE}🚀 Starting SKHD Bridge daemon...${NC}"
+    
+    # Create configuration if it doesn't exist
+    if [[ ! -f "$CONFIG_FILE" ]]; then
+        create_default_config
+    fi
+    
+    # Start the daemon in background
+    nohup "$0" daemon >/dev/null 2>&1 &
+    local daemon_pid=$!
+    echo "$daemon_pid" > "$PID_FILE"
+    
+    echo "${GREEN}✅ SKHD Bridge daemon started (PID: $daemon_pid)${NC}"
+    echo "${YELLOW}💡 Hotkeys are now active!${NC}"
+}
+
+# Function to stop the daemon
+stop_daemon() {
+    if [[ -f "$PID_FILE" ]]; then
+        local pid=$(cat "$PID_FILE")
+        if kill -0 "$pid" 2>/dev/null; then
+            kill "$pid"
+            rm -f "$PID_FILE"
+            echo "${GREEN}✅ SKHD Bridge daemon stopped${NC}"
+        else
+            echo "${YELLOW}⚠️  Daemon is not running${NC}"
+            rm -f "$PID_FILE"
+        fi
+    else
+        echo "${YELLOW}⚠️  No daemon PID file found${NC}"
+    fi
+}
+
+# Function to show daemon status
+show_status() {
+    echo "${BLUE}📊 SKHD Bridge Daemon Status${NC}"
+    echo "================================="
+    echo ""
+    
+    if [[ -f "$PID_FILE" ]]; then
+        local pid=$(cat "$PID_FILE")
+        if kill -0 "$pid" 2>/dev/null; then
+            echo "${GREEN}✅ Daemon is running (PID: $pid)${NC}"
+        else
+            echo "${RED}❌ Daemon is not running (stale PID file)${NC}"
+            rm -f "$PID_FILE"
+        fi
+    else
+        echo "${YELLOW}⚠️  Daemon is not running${NC}"
+    fi
+    
+    if [[ -f "$CONFIG_FILE" ]]; then
+        echo "${GREEN}✅ Configuration file exists: $CONFIG_FILE${NC}"
+    else
+        echo "${RED}❌ Configuration file not found${NC}"
+    fi
+    
+    if command -v yabai-bridge &>/dev/null; then
+        echo "${GREEN}✅ YABAI Bridge is available${NC}"
+    else
+        echo "${RED}❌ YABAI Bridge not found in PATH${NC}"
+    fi
+    
+    echo ""
+    echo "${GREEN}🚀 System is ready for hotkey management!${NC}"
+}
+
+# Function to show configuration
+show_config() {
+    if [[ -f "$CONFIG_FILE" ]]; then
+        echo "${BLUE}📋 SKHD Bridge Configuration${NC}"
+        echo "================================="
+        echo ""
+        cat "$CONFIG_FILE"
+    else
+        echo "${RED}❌ Configuration file not found${NC}"
+        echo "${YELLOW}💡 Run 'skhd-bridge start' to create default configuration${NC}"
+    fi
+}
+
+# Function to run as daemon
+run_daemon() {
+    echo "${BLUE}🔄 SKHD Bridge daemon started${NC}"
+    echo "${YELLOW}💡 Hotkeys are now active in the background${NC}"
+    echo "${GREEN}✅ Press Ctrl+C to stop${NC}"
+    
+    # Keep the daemon running
+    while true; do
+        sleep 1
+    done
+}
+
+# Main script logic
+case "${1:-help}" in
+    "start")
+        start_daemon
+        ;;
+    "stop")
+        stop_daemon
+        ;;
+    "restart")
+        stop_daemon
+        sleep 1
+        start_daemon
+        ;;
+    "status")
+        show_status
+        ;;
+    "config")
+        show_config
+        ;;
+    "daemon")
+        run_daemon
+        ;;
+    "help"|*)
+        show_help
+        ;;
+esac

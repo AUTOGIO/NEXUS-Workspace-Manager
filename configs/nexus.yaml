@@ -1,0 +1,42 @@
+# NEXUS Configuration File
+# AI-Powered Workspace Intelligence Configuration
+
+# System Settings
+system:
+  log_level: INFO
+  log_file: data/logs/nexus.log
+  cache_dir: data/cache
+  models_dir: data/models
+
+# YABAI Integration
+yabai:
+  enabled: true
+  config_file: configs/yabai/yabai_config.yaml
+  auto_start: true
+
+# AI Model Settings
+ai:
+  provider: lm_studio
+  endpoint: http://localhost:1234
+  model: local_model
+  temperature: 0.7
+  max_tokens: 1000
+
+# Workspace Profiles
+profiles:
+  default: personal
+  auto_switch: false
+  profiles_dir: configs/profiles
+
+# Layout Management
+layouts:
+  auto_save: true
+  layouts_dir: configs/layouts
+  default_layout: standard
+
+# Logging
+logging:
+  level: INFO
+  file: data/logs/nexus.log
+  max_size: 10MB
+  backup_count: 5

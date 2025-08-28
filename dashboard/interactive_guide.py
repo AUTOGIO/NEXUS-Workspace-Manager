@@ -20,6 +20,7 @@ import platform
 from typing import Dict, List, Any
 from api_keys_ui import render_api_keys_panel
 from model_management_ui import render_model_management_panel
+from model_analytics_ui import render_model_analytics_panel
 
 # Add project root to path for imports
 project_root = Path(__file__).parent.parent

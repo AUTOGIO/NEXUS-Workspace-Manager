@@ -1,0 +1,15 @@
+#!/bin/bash
+# NEXUS - AI-Powered Workspace Intelligence
+# Main executable script
+
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
+
+# Activate virtual environment if it exists
+if [ -f "$PROJECT_DIR/.venv/bin/activate" ]; then
+    source "$PROJECT_DIR/.venv/bin/activate"
+fi
+
+# Run the nexus command
+cd "$PROJECT_DIR/src" && exec python3 -m nexus.cli.main "$@"

@@ -2,10 +2,14 @@
 
 > **The Ultimate AI-Powered Workspace Management System for Apple Silicon**
 
-[![Project Status](https://img.shields.io/badge/status-Production%20Ready-brightgreen)](https://github.com/yourusername/nexus)
-[![macOS](https://img.shields.io/badge/macOS-12.0+-blue)](https://www.apple.com/macos/)
-[![Python](https://img.shields.io/badge/Python-3.11+-yellow)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python Version](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/)
+[![macOS Version](https://img.shields.io/badge/macOS-12.0+-red.svg)](https://www.apple.com/macos/)
 [![Apple Silicon](https://img.shields.io/badge/Apple%20Silicon-M1%2FM2%2FM3-orange)](https://www.apple.com/mac/)
+[![Project Status](https://img.shields.io/badge/status-Production%20Ready-brightgreen)](https://github.com/yourusername/NEXUS)
+[![GitHub Issues](https://img.shields.io/github/issues/yourusername/NEXUS)](https://github.com/yourusername/NEXUS/issues)
+[![GitHub Stars](https://img.shields.io/github/stars/yourusername/NEXUS)](https://github.com/yourusername/NEXUS/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/yourusername/NEXUS)](https://github.com/yourusername/NEXUS/network/members)
 
 ## 🌟 **What's New in NEXUS Enhanced**
 
@@ -333,6 +337,38 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Issues**: Report bugs on GitHub
 - **Discussions**: Join the community
 - **Wiki**: Additional resources
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details on:
+
+- 🚀 **Development Setup**: Get started with the project
+- 📏 **Code Standards**: Follow our coding guidelines
+- 🧪 **Testing**: Run and write tests
+- 🔄 **Pull Requests**: Submit your changes
+- 🐛 **Issue Reporting**: Report bugs and request features
+
+### Contributors
+
+<a href="https://github.com/yourusername/NEXUS/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=yourusername/NEXUS" />
+</a>
+
+## 🙏 Acknowledgments
+
+- **YABAI**: Tiling window manager for macOS
+- **SKHD**: Global hotkey daemon
+- **BetterTouchTool**: Advanced gesture recognition
+- **Keyboard Maestro**: Powerful automation tool
+- **Apple Shortcuts**: Native macOS automation
+- **MLX**: Apple's machine learning framework
+- **Streamlit**: For the interactive dashboard
+
+## 📜 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 

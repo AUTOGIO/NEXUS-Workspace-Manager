@@ -1,0 +1,619 @@
+#!/bin/zsh
+# Enhanced Profile Loader - Uses Smart App Finder for Dual Path Support
+# Automatically finds and opens applications from both /Applications and user Applications
+
+set -euo pipefail
+
+# Colors for output
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+RED='\033[0;31m'
+NC='\033[0m'
+
+# Configuration and state files
+PROFILE_STATE_FILE="$HOME/.nexus_profile_state"
+APP_CACHE_FILE="$HOME/.nexus_app_cache"
+PROFILE_LOG_FILE="$HOME/.nexus_profile.log"
+
+# Function to log profile actions
+log_profile_action() {
+    local message="$1"
+    local timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+    echo "[$timestamp] $message" >> "$PROFILE_LOG_FILE"
+}
+
+# Function to update app availability cache
+update_app_cache() {
+    if command -v app-finder &>/dev/null; then
+        app-finder list > "$APP_CACHE_FILE" 2>/dev/null || true
+        log_profile_action "App cache updated"
+    else
+        # Fallback: scan common app locations
+        find /Applications -maxdepth 1 -name "*.app" 2>/dev/null | head -100 > "$APP_CACHE_FILE" || true
+        find "$HOME/Applications" -maxdepth 1 -name "*.app" 2>/dev/null >> "$APP_CACHE_FILE" || true
+        log_profile_action "App cache updated (fallback method)"
+    fi
+}
+
+# Function to check if app is available
+check_app_availability() {
+    local app_name="$1"
+    
+    # Check cache first
+    if [[ -f "$APP_CACHE_FILE" ]]; then
+        if grep -qi "$app_name" "$APP_CACHE_FILE" 2>/dev/null; then
+            return 0
+        fi
+    fi
+    
+    # Fallback to direct check using native macOS commands
+    if [[ -d "/Applications/$app_name.app" ]] || [[ -d "$HOME/Applications/$app_name.app" ]]; then
+        return 0
+    fi
+    
+    # Check for common app name variations
+    local app_variations=("$app_name" "${app_name}.app" "com.$app_name" "$app_name.app")
+    for variation in "${app_variations[@]}"; do
+        if [[ -d "/Applications/$variation" ]] || [[ -d "$HOME/Applications/$variation" ]]; then
+            return 0
+        fi
+    done
+    
+    return 1
+}
+
+# Function to validate profile name
+validate_profile() {
+    local profile="$1"
+    case "$profile" in
+        "ai_development"|"ai"|"work"|"business"|"focus"|"writing")
+            return 0
+            ;;
+        *)
+            return 1
+            ;;
+    esac
+}
+
+# Function to save current profile state
+save_profile_state() {
+    local profile="$1"
+    echo "$profile" > "$PROFILE_STATE_FILE"
+    log_profile_action "Profile state saved: $profile"
+}
+
+# Function to load last profile state
+load_last_profile() {
+    if [[ -f "$PROFILE_STATE_FILE" ]]; then
+        local last_profile=$(cat "$PROFILE_STATE_FILE" 2>/dev/null)
+        if [[ -n "$last_profile" ]] && validate_profile "$last_profile"; then
+            echo "$last_profile"
+            return 0
+        fi
+    fi
+    return 1
+}
+
+# Function to setup YABAI layout for profile
+setup_yabai_layout() {
+    local profile="$1"
+    
+    if ! command -v yabai &>/dev/null; then
+        echo "${YELLOW}⚠️  YABAI not available, skipping layout setup${NC}"
+        return 0
+    fi
+    
+    case "$profile" in
+        "ai_development"|"ai")
+            echo "🔄 Setting YABAI layout: BSP for AI Development"
+            yabai -m space --layout bsp 2>/dev/null || true
+            yabai -m config window_placement second_child 2>/dev/null || true
+            ;;
+        "work"|"business")
+            echo "🔄 Setting YABAI layout: Stack for Work"
+            yabai -m space --layout stack 2>/dev/null || true
+            ;;
+        "focus"|"writing")
+            echo "🔄 Setting YABAI layout: Float for Focus"
+            yabai -m space --layout float 2>/dev/null || true
+            ;;
+    esac
+    
+    log_profile_action "YABAI layout set for profile: $profile"
+}
+
+# Function to smart open application
+smart_open_app() {
+    local app_name="$1"
+    local description="${2:-$app_name}"
+    
+    echo "🔧 Opening: $description"
+    
+    # Check availability first
+    if check_app_availability "$app_name"; then
+        # Try multiple methods to open the app
+        local opened=false
+        
+        # Method 1: Try app-finder if available
+        if command -v app-finder &>/dev/null; then
+            if app-finder open "$app_name" >/dev/null 2>&1; then
+                opened=true
+            fi
+        fi
+        
+        # Method 2: Try direct open command
+        if [[ "$opened" == false ]]; then
+            if open -a "$app_name" >/dev/null 2>&1; then
+                opened=true
+            fi
+        fi
+        
+        # Method 3: Try with .app extension
+        if [[ "$opened" == false ]]; then
+            if open -a "$app_name.app" >/dev/null 2>&1; then
+                opened=true
+            fi
+        fi
+        
+        # Method 4: Try common app locations
+        if [[ "$opened" == false ]]; then
+            for app_path in "/Applications/$app_name.app" "$HOME/Applications/$app_name.app" "/Applications/$app_name" "$HOME/Applications/$app_name"; do
+                if [[ -d "$app_path" ]] && open "$app_path" >/dev/null 2>&1; then
+                    opened=true
+                    break
+                fi
+            done
+        fi
+        
+        if [[ "$opened" == true ]]; then
+            echo "${GREEN}✅ Successfully opened: $description${NC}"
+            log_profile_action "App opened successfully: $description"
+            return 0
+        else
+            echo "${YELLOW}⚠️  Could not open: $description${NC}"
+            log_profile_action "App open failed: $description"
+            return 1
+        fi
+    else
+        echo "${YELLOW}⚠️  App not available: $description${NC}"
+        log_profile_action "App not available: $description"
+        return 1
+    fi
+}
+
+# Function to load AI Development Profile
+load_ai_development_profile() {
+    local profile="ai_development"
+    local success_count=0
+    local total_count=0
+    
+    echo "🚀 Loading AI Development Profile for 2-Display Setup..."
+    
+    # Setup YABAI layout first
+    setup_yabai_layout "$profile"
+    
+    # AI Development Tools
+    echo "🔧 Setting up AI development environment..."
+    total_count=$((total_count + 1))
+    if smart_open_app "Cursor" "AI-powered code editor"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    total_count=$((total_count + 1))
+    if smart_open_app "Visual Studio Code" "Alternative code editor"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    total_count=$((total_count + 1))
+    if smart_open_app "PyCharm" "Python IDE for ML"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    total_count=$((total_count + 1))
+    if smart_open_app "Jupyter" "Jupyter notebooks"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    # Model Development & Training
+    echo "🤖 Setting up AI model development tools..."
+    total_count=$((total_count + 1))
+    if smart_open_app "Ollama" "Local model management"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    total_count=$((total_count + 1))
+    if smart_open_app "LM Studio" "Model fine-tuning"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    total_count=$((total_count + 1))
+    if smart_open_app "MLX" "Apple ML framework"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    total_count=$((total_count + 1))
+    if smart_open_app "Comet" "ML experiment tracking"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    # MLX Integration
+    echo "🧠 Setting up MLX environment..."
+    if command -v mlx-manager &>/dev/null; then
+        echo "${GREEN}✅ MLX Manager available${NC}"
+        # Initialize MLX if not already done
+        mlx-manager init >/dev/null 2>&1 || true
+    fi
+    
+    # Development Utilities
+    echo "⚙️ Setting up development utilities..."
+    total_count=$((total_count + 1))
+    if smart_open_app "iTerm" "Terminal for CLI tools"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    total_count=$((total_count + 1))
+    if smart_open_app "iTerm2" "Alternative terminal"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    total_count=$((total_count + 1))
+    if smart_open_app "Postman" "API testing"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    total_count=$((total_count + 1))
+    if smart_open_app "Docker" "Containerization"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    total_count=$((total_count + 1))
+    if smart_open_app "GitHub Desktop" "Version control"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    # AI Research & Documentation
+    echo "📚 Setting up research tools..."
+    total_count=$((total_count + 1))
+    if smart_open_app "Obsidian" "Knowledge management"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    total_count=$((total_count + 1))
+    if smart_open_app "ChatGPT" "AI coding assistant"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    total_count=$((total_count + 1))
+    if smart_open_app "Grok" "Alternative AI assistant"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    total_count=$((total_count + 1))
+    if smart_open_app "Perplexity" "Research assistant"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    total_count=$((total_count + 1))
+    if smart_open_app "Google Gemini" "Google AI assistant"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    total_count=$((total_count + 1))
+    if smart_open_app "NotebookLM" "AI notebook"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    # Save profile state (always save, regardless of app success)
+    save_profile_state "$profile"
+    
+    # Wait for apps to launch
+    sleep 2
+    
+    echo "✅ AI Development profile loaded successfully for 2-display setup!"
+    echo "📊 Apps opened: $success_count/$total_count"
+    echo "🚀 Center Display: Code Development & IDEs"
+    echo "🤖 Right Display: AI Models & Documentation"
+    echo "🔧 Development tools float for quick access"
+    echo "📚 AI assistants always visible across spaces"
+    
+    log_profile_action "AI Development profile loaded successfully - $success_count/$total_count apps opened"
+}
+
+# Function to load Work Profile
+load_work_profile() {
+    local profile="work"
+    local success_count=0
+    local total_count=0
+    
+    echo "💼 Loading Work Profile for 2-Display Setup..."
+    
+    # Setup YABAI layout first
+    setup_yabai_layout "$profile"
+    
+    # Business Tools
+    echo "💼 Setting up business environment..."
+    total_count=$((total_count + 1))
+    if smart_open_app "Visual Studio Code" "Code editor"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    total_count=$((total_count + 1))
+    if smart_open_app "iTerm" "Terminal"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    total_count=$((total_count + 1))
+    if smart_open_app "Chrome" "Web browser"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    total_count=$((total_count + 1))
+    if smart_open_app "Safari" "Alternative browser"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    total_count=$((total_count + 1))
+    if smart_open_app "Obsidian" "Note taking"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    total_count=$((total_count + 1))
+    if smart_open_app "ChatGPT" "AI assistant"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    # Communication
+    echo "💬 Setting up communication tools..."
+    total_count=$((total_count + 1))
+    if smart_open_app "Slack" "Team communication"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    total_count=$((total_count + 1))
+    if smart_open_app "WhatsApp" "Messaging"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    total_count=$((total_count + 1))
+    if smart_open_app "Mail" "Email client"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    # Productivity
+    echo "📊 Setting up productivity tools..."
+    total_count=$((total_count + 1))
+    if smart_open_app "Numbers" "Spreadsheets"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    total_count=$((total_count + 1))
+    if smart_open_app "Keynote" "Presentations"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    total_count=$((total_count + 1))
+    if smart_open_app "Pages" "Document editing"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    # Save profile state
+    save_profile_state "$profile"
+    
+    echo "✅ Work profile loaded successfully for 2-display setup!"
+    echo "📊 Apps opened: $success_count/$total_count"
+    echo "🚀 Center Display: Main work applications"
+    echo "📱 Right Display: Communication & reference tools"
+    
+    log_profile_action "Work profile loaded successfully - $success_count/$total_count apps opened"
+}
+
+# Function to load Focus Profile
+load_focus_profile() {
+    local profile="focus"
+    local success_count=0
+    local total_count=0
+    
+    echo "🎯 Loading Focus Profile for 2-Display Setup..."
+    
+    # Setup YABAI layout first
+    setup_yabai_layout "$profile"
+    
+    # Focus Tools
+    echo "🎯 Setting up focus environment..."
+    total_count=$((total_count + 1))
+    if smart_open_app "Obsidian" "Knowledge management"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    total_count=$((total_count + 1))
+    if smart_open_app "Ulysses" "Writing app"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    total_count=$((total_count + 1))
+    if smart_open_app "Notion" "Note taking"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    total_count=$((total_count + 1))
+    if smart_open_app "ChatGPT" "AI writing assistant"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    # Minimal Distractions
+    echo "🧘 Setting up minimal environment..."
+    total_count=$((total_count + 1))
+    if smart_open_app "iTerm" "Terminal (minimal)"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    total_count=$((total_count + 1))
+    if smart_open_app "Safari" "Research (minimal)"; then
+        success_count=$((success_count + 1))
+    fi
+    
+    # Save profile state
+    save_profile_state "$profile"
+    
+    echo "✅ Focus profile loaded successfully for 2-display setup!"
+    echo "📊 Apps opened: $success_count/$total_count"
+    echo "🚀 Center Display: Main focus application"
+    echo "📚 Right Display: Reference & research"
+    echo "🧘 Minimal distractions for deep work"
+    
+    log_profile_action "Focus profile loaded successfully - $success_count/$total_count apps opened"
+}
+
+# Function to show available profiles
+show_profiles() {
+    echo "${BLUE}🎯 Available Enhanced Profiles${NC}"
+    echo "================================="
+    echo ""
+    echo "${GREEN}AI & Development:${NC}"
+    echo "  • ai_development    - AI coding & model training"
+    echo "  • work              - Business & productivity"
+    echo "  • focus             - Deep work & writing"
+    echo ""
+    
+    # Show last used profile
+    local last_profile=$(load_last_profile)
+    if [[ -n "$last_profile" ]]; then
+        echo "${GREEN}🔄 Last used profile:${NC} $last_profile"
+    fi
+    
+    echo ""
+    echo "${GREEN}Usage:${NC}"
+    echo "  enhanced-profile-loader [profile_name]"
+    echo ""
+    echo "${GREEN}Examples:${NC}"
+    echo "  enhanced-profile-loader ai_development"
+    echo "  enhanced-profile-loader work"
+    echo "  enhanced-profile-loader focus"
+}
+
+# Function to show help
+show_help() {
+    echo "${BLUE}📖 Enhanced Profile Loader Help${NC}"
+    echo "===================================="
+    echo ""
+    echo "${GREEN}Features:${NC}"
+    echo "  • Smart app detection in both paths"
+    echo "  • Automatic fallback to available apps"
+    echo "  • 2-display optimization"
+    echo "  • Enhanced error handling"
+    echo "  • Profile state persistence"
+    echo "  • YABAI layout integration"
+    echo "  • App availability caching"
+    echo ""
+    echo "${GREEN}Available profiles:${NC}"
+    echo "  • ai_development    - AI Development Profile"
+    echo "  • work              - Work Profile"
+    echo "  • focus             - Focus Profile"
+    echo ""
+    echo "${GREEN}Usage:${NC}"
+    echo "  enhanced-profile-loader [profile_name]"
+    echo ""
+    echo "${YELLOW}💡 This loader automatically finds apps in:${NC}"
+    echo "  • /Applications (System-wide)"
+    echo "  • /Users/giovannini/Applications (User-specific)"
+    echo ""
+    echo "${GREEN}📁 State files:${NC}"
+    echo "  • Profile state: $PROFILE_STATE_FILE"
+    echo "  • App cache: $APP_CACHE_FILE"
+    echo "  • Activity log: $PROFILE_LOG_FILE"
+}
+
+# Function to show system status
+show_status() {
+    echo "${BLUE}📊 Enhanced Profile Loader Status${NC}"
+    echo "====================================="
+    echo ""
+    
+    # Check profile state
+    if [[ -f "$PROFILE_STATE_FILE" ]]; then
+        local last_profile=$(cat "$PROFILE_STATE_FILE")
+        echo "${GREEN}✅ Last profile: $last_profile${NC}"
+    else
+        echo "${YELLOW}⚠️  No profile state saved${NC}"
+    fi
+    
+    # Check app cache
+    if [[ -f "$APP_CACHE_FILE" ]]; then
+        local cache_age=$(($(date +%s) - $(stat -f %m "$APP_CACHE_FILE" 2>/dev/null || echo 0)))
+        local cache_hours=$((cache_age / 3600))
+        echo "${GREEN}✅ App cache: $cache_hours hours old${NC}"
+    else
+        echo "${YELLOW}⚠️  App cache not found${NC}"
+    fi
+    
+    # Check log file
+    if [[ -f "$PROFILE_LOG_FILE" ]]; then
+        local log_size=$(stat -f %z "$PROFILE_LOG_FILE" 2>/dev/null || echo 0)
+        echo "${GREEN}✅ Activity log: ${log_size} bytes${NC}"
+    else
+        echo "${YELLOW}⚠️  Activity log not found${NC}"
+    fi
+    
+    # Check dependencies
+    if command -v app-finder &>/dev/null; then
+        echo "${GREEN}✅ App-finder available${NC}"
+    else
+        echo "${YELLOW}⚠️  App-finder not available (using fallback)${NC}"
+    fi
+    
+    if command -v yabai &>/dev/null; then
+        echo "${GREEN}✅ YABAI available${NC}"
+    else
+        echo "${YELLOW}⚠️  YABAI not available${NC}"
+    fi
+    
+    echo ""
+    echo "${GREEN}🚀 System is ready for profile management!${NC}"
+}
+
+# Function to initialize system
+initialize_system() {
+    echo "${BLUE}🔧 Initializing Enhanced Profile Loader...${NC}"
+    
+    # Create necessary directories
+    mkdir -p "$(dirname "$PROFILE_STATE_FILE")" 2>/dev/null || true
+    mkdir -p "$(dirname "$APP_CACHE_FILE")" 2>/dev/null || true
+    mkdir -p "$(dirname "$PROFILE_LOG_FILE")" 2>/dev/null || true
+    
+    # Update app cache
+    update_app_cache
+    
+    # Show status
+    show_status
+    
+    log_profile_action "System initialized"
+}
+
+# Main script logic
+case "${1:-help}" in
+    "ai_development"|"ai")
+        initialize_system
+        load_ai_development_profile
+        ;;
+    "work"|"business")
+        initialize_system
+        load_work_profile
+        ;;
+    "focus"|"writing")
+        initialize_system
+        load_focus_profile
+        ;;
+    "profiles"|"list")
+        show_profiles
+        ;;
+    "status")
+        show_status
+        ;;
+    "init"|"initialize")
+        initialize_system
+        ;;
+    "help"|*)
+        show_help
+        ;;
+esac
