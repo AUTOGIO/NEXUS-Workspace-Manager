@@ -123,7 +123,7 @@ test-ai-bridge: ## Test AI automation bridge
 # N8N integration
 n8n-start: ## Start N8N workflow automation
 	@echo "🔄 Starting N8N..."
-	cd integrations/n8n && docker-compose up -d
+	cd configs/integrations/n8n && docker-compose up -d
 
 # Dashboard and monitoring
 dashboard: ## Launch NEXUS dashboard

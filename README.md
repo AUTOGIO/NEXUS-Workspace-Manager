@@ -65,7 +65,49 @@ nexus-quick-menu
 nexus-ai-optimize
 
 # Analyze your workspace
-nexus-workspace-analyze
+nexus status
+
+# Switch profiles
+nexus-profile-switcher --list
+```
+
+## 🖥️ **Command Line Interface (CLI)**
+
+NEXUS provides a powerful command-line interface for advanced users:
+
+### **Main Commands**
+```bash
+nexus --help                    # Show all available commands
+nexus status                    # Check system status
+nexus version                   # Show version information
+nexus profile list             # List available profiles
+nexus profile switch <name>    # Switch to a profile
+nexus layout save <name>       # Save current layout
+nexus layout restore <name>    # Restore saved layout
+nexus optimize --ai            # AI-powered optimization
+```
+
+### **AI Optimization Commands**
+```bash
+nexus-ai-optimize              # Optimize workspace
+nexus-ai-optimize --profile <name>  # Target specific profile
+nexus-ai-optimize --list-models     # Show available AI models
+nexus-ai-optimize --verbose         # Detailed output
+```
+
+### **Profile Management Commands**
+```bash
+nexus-profile-switcher --list           # List all profiles
+nexus-profile-switcher --switch <name>  # Switch to profile
+nexus-profile-switcher --info <name>    # Profile details
+nexus-profile-switcher --force          # Force switch
+```
+
+### **Interactive Menu System**
+```bash
+nexus-quick-menu               # Launch interactive menu
+nexus-quick-menu --action status  # Execute specific action
+nexus-quick-menu --no-interactive # Non-interactive mode
 ```
 
 ## 🎨 **Enhanced Automation Features**
@@ -105,30 +147,76 @@ The system automatically:
 ## 🏗️ **Project Structure**
 
 ```
-nexus-workspace/
-├── .github/                    # GitHub Actions and templates
-├── assets/                     # Images, icons, and media
-├── configs/                    # Configuration files
-│   ├── models/                # AI model configurations
-│   ├── profiles/              # Workspace profiles
-│   └── integrations/          # Third-party integrations
-├── dashboard/                  # Streamlit dashboard
-├── data/                      # Data storage and snapshots
-├── docs/                      # Documentation
+NEXUS-Workspace-Manager-v2.0.0-PROD/
+├── bin/                       # Executable binaries and scripts
+│   ├── nexus                  # Main CLI executable
+│   ├── nexus-ai-optimize      # AI optimization tool
+│   ├── nexus-profile-switcher # Profile switching tool
+│   ├── nexus-quick-menu       # Interactive menu system
+│   └── setup                  # Setup utility
+├── configs/                   # Configuration files
+│   ├── environments/          # Environment-specific configs
+│   ├── integrations/          # Third-party integrations
+│   │   ├── bettertouchtool_preset.bttpreset
+│   │   ├── keyboard_maestro_macros.kmmacros
+│   │   ├── n8n/              # N8N workflow automation
+│   │   └── raycast_yabai_extension/
+│   ├── layouts/              # Window layout configurations
+│   ├── profiles/             # Workspace profiles (12 profiles)
+│   ├── settings/             # General settings (API keys, etc.)
+│   ├── skhd/                 # SKHD hotkey daemon configs
+│   ├── yabai/                # YABAI window manager configs
+│   ├── adaptive_layout.yaml  # Adaptive layout config
+│   ├── current_display_config.json
+│   ├── dynamic_layout_config.yaml
+│   └── nexus.yaml            # Main NEXUS configuration
+├── dashboard/                # Streamlit dashboard components
+│   ├── api_keys_ui.py        # API key management UI
+│   ├── interactive_guide.py  # Interactive setup guide
+│   ├── model_analytics_ui.py # AI model analytics
+│   └── model_management_ui.py # Model management interface
+├── data/                     # Data storage and snapshots
+│   ├── cache/                # Cache files
+│   ├── logs/                 # Log files
+│   └── models/               # AI model storage
+├── deployments/              # Deployment configurations
+│   ├── development/          # Development environment
+│   ├── production/           # Production environment
+│   └── staging/              # Staging environment
+├── docs/                     # Comprehensive documentation
 │   ├── user-guides/          # User documentation
-│   └── developer-guides/     # Developer documentation
-├── infra/                     # Infrastructure and deployment
-├── logs/                      # System logs
-├── scripts/                   # Automation scripts
-│   └── setup/                # Setup and installation
-├── src/                       # Source code
+│   ├── developer-guides/     # Developer documentation
+│   ├── api/                  # API documentation
+│   └── configuration/        # Configuration guides
+├── scripts/                  # Automation and utility scripts
+│   ├── automation/           # Workspace automation scripts
+│   ├── install/              # Installation scripts
+│   ├── maintenance/          # Maintenance and troubleshooting
+│   ├── deployment/           # Deployment scripts
+│   └── setup/                # Setup and configuration scripts
+├── src/                      # Source code (Python package)
 │   └── nexus/                # Core NEXUS package
-├── tests/                     # Test suite
-├── tools/                     # Utility tools
-│   └── ai/                   # AI integration tools
-├── pyproject.toml            # Project configuration
-├── Makefile                  # Build automation
-└── README.md                 # This file
+│       ├── cli/              # Command-line interface
+│       ├── core/             # Core functionality
+│       ├── dashboard/        # Dashboard components
+│       ├── models/           # AI model management
+│       ├── profiles/         # Profile management
+│       └── utils/            # Utility functions
+├── tests/                    # Test suite
+│   ├── unit/                 # Unit tests
+│   ├── integration/          # Integration tests
+│   └── pytest.ini           # Pytest configuration
+├── tools/                    # Development tools and utilities
+│   ├── ai/                   # AI integration tools
+│   ├── analytics/            # Analytics and monitoring tools
+│   ├── shortcuts/            # Shortcut management tools
+│   ├── enhanced-profile-loader # Profile loader utility
+│   ├── skhd-bridge          # SKHD integration bridge
+│   └── yabai-bridge         # YABAI integration bridge
+├── pyproject.toml           # Python project configuration
+├── Makefile                 # Build automation and tasks
+├── uv.lock                  # Dependency lock file
+└── README.md                # This file
 ```
 
 ## 🔧 **Development Setup**

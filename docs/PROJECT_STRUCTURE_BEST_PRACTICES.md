@@ -1,174 +1,214 @@
 # 🏗️ NEXUS Project Structure - Best Practices
 
-> **Reorganized Directory Structure Following Python & DevOps Best Practices**
+> **Current Directory Structure Following Python & DevOps Best Practices**
 
-## 📁 **New Directory Structure**
+## 📁 **Current Directory Structure**
 
 ```
-NEXUS/
+NEXUS-Workspace-Manager-v2.0.0-PROD/
 ├── 📚 docs/                          # Documentation
 │   ├── 📖 user-guides/               # User documentation
 │   ├── 🔧 installation/               # Setup guides
 │   ├── 📋 api/                       # API documentation
 │   ├── 🎯 SHORTCUTS_REFERENCE.md     # Complete shortcuts guide
-│   └── 📊 PROJECT_STRUCTURE_BEST_PRACTICES.md
+│   ├── 📊 PROJECT_STRUCTURE_BEST_PRACTICES.md
+│   └── 📄 CONTRIBUTING.md            # Contribution guidelines
 │
 ├── 🧠 src/                           # Source code (Python)
 │   └── nexus/                        # Main package
 │       ├── __init__.py
+│       ├── cli/                      # Command-line interface
+│       │   ├── __init__.py
+│       │   ├── main.py               # Main CLI entry point
+│       │   ├── ai_optimize.py        # AI optimization commands
+│       │   ├── profile_switcher.py   # Profile switching
+│       │   └── quick_menu.py         # Interactive menu
 │       ├── core/                     # Core functionality
 │       │   ├── __init__.py
-│       │   ├── ai_model_manager.py
-│       │   ├── dynamic_layout_manager.py
-│       │   └── workspace_manager.py
+│       │   ├── ai_model_manager.py   # AI model management
+│       │   └── dynamic_layout_manager.py # Layout management
 │       ├── dashboard/                # Dashboard components
 │       │   ├── __init__.py
 │       │   ├── interactive_dashboard.py
 │       │   └── workspace_dashboard.py
+│       ├── models/                   # AI model management
+│       │   ├── __init__.py
+│       │   ├── manager.py
+│       │   └── scanner.py
 │       ├── profiles/                 # Workspace profiles
 │       │   ├── __init__.py
-│       │   ├── profile_manager.py
-│       │   └── profiles/
-│       │       ├── work_profile.sh
-│       │       ├── personal_profile.sh
-│       │       └── ai_research_profile.sh
-│       ├── integrations/             # Third-party integrations
-│       │   ├── __init__.py
-│       │   ├── keyboard_maestro.py
-│       │   ├── bettertouchtool.py
-│       │   └── raycast.py
-│       ├── analytics/                # Data collection & analysis
-│       │   ├── __init__.py
-│       │   ├── screen_time_tracker.py
-│       │   └── productivity_monitor.py
+│       │   ├── ai_research_profile.sh
+│       │   ├── personal_profile.sh
+│       │   └── work_profile.sh
 │       └── utils/                    # Utility functions
 │           ├── __init__.py
-│           ├── config_manager.py
-│           └── system_monitor.py
+│           ├── api_keys.py           # API key management
+│           └── logger.py             # Logging utilities
 │
 ├── ⚙️ configs/                       # Configuration files
-│   ├── profiles/                     # Workspace profiles
-│   ├── integrations/                 # Integration configs
-│   ├── models/                       # AI model configs
-│   └── yabai/                       # YABAI-specific configs
+│   ├── environments/                 # Environment configs
+│   ├── integrations/                 # Third-party integrations
+│   │   ├── bettertouchtool_preset.bttpreset
+│   │   ├── keyboard_maestro_macros.kmmacros
+│   │   ├── n8n/                     # N8N automation
+│   │   └── raycast_yabai_extension/
+│   ├── layouts/                     # Window layouts
+│   ├── profiles/                    # 12 workspace profiles
+│   ├── settings/                    # General settings
+│   ├── skhd/                        # Hotkey daemon configs
+│   ├── yabai/                       # Window manager configs
+│   ├── adaptive_layout.yaml
+│   ├── current_display_config.json
+│   ├── dynamic_layout_config.yaml
+│   └── nexus.yaml                   # Main configuration
 │
 ├── 🚀 scripts/                       # Executable scripts
-│   ├── setup/                        # Setup & installation
-│   ├── maintenance/                  # Maintenance tasks
-│   └── automation/                   # Automation workflows
+│   ├── automation/                   # Workspace automation (21 scripts)
+│   ├── install/                      # Installation scripts
+│   ├── maintenance/                  # Maintenance & troubleshooting
+│   ├── deployment/                   # Deployment scripts
+│   └── setup/                        # Setup & configuration
 │
 ├── 🧪 tests/                         # Test suite
 │   ├── unit/                         # Unit tests
 │   ├── integration/                  # Integration tests
-│   └── fixtures/                     # Test data
+│   └── pytest.ini                   # Test configuration
 │
 ├── 📊 data/                          # Data storage
-│   ├── analytics/                    # Analytics data
+│   ├── cache/                        # Cache files
 │   ├── logs/                         # System logs
-│   └── cache/                        # Cache files
+│   └── models/                       # AI model storage
 │
-├── 🐳 infra/                         # Infrastructure
-│   ├── docker/                       # Docker configurations
-│   ├── kubernetes/                   # K8s manifests
-│   └── terraform/                    # Infrastructure as code
+├── 🐳 deployments/                   # Deployment configurations
+│   ├── development/                  # Development environment
+│   ├── production/                   # Production environment
+│   └── staging/                      # Staging environment
 │
-├── 📦 build/                         # Build artifacts
-│   ├── dist/                         # Distribution packages
-│   └── wheels/                       # Python wheels
+├── 🔧 tools/                         # Development tools & utilities
+│   ├── ai/                           # AI integration tools
+│   ├── analytics/                    # Analytics & monitoring
+│   ├── shortcuts/                    # Shortcut management
+│   ├── enhanced-profile-loader       # Profile loader
+│   ├── skhd-bridge                  # SKHD integration
+│   └── yabai-bridge                 # YABAI integration
 │
-├── 🔧 tools/                         # Development tools
-│   ├── pre-commit/                   # Pre-commit hooks
-│   ├── linting/                      # Linting configs
-│   └── formatting/                   # Code formatting
+├── 🖥️ dashboard/                     # Streamlit dashboards
+│   ├── api_keys_ui.py               # API key management UI
+│   ├── interactive_guide.py         # Interactive setup guide
+│   ├── model_analytics_ui.py        # Model analytics
+│   └── model_management_ui.py       # Model management
 │
-├── 📋 requirements/                  # Dependencies
-│   ├── requirements.txt              # Production dependencies
-│   ├── requirements-dev.txt          # Development dependencies
-│   └── requirements-test.txt         # Testing dependencies
+├── 📦 bin/                           # Executable binaries
+│   ├── nexus                        # Main CLI
+│   ├── nexus-ai-optimize           # AI optimization tool
+│   ├── nexus-profile-switcher      # Profile switcher
+│   ├── nexus-quick-menu            # Interactive menu
+│   └── setup                       # Setup utility
 │
-├── 🚀 launcher.sh                    # Main entry point
-├── 📖 README.md                      # Project overview
-├── 📄 LICENSE                        # License information
-├── 🐍 pyproject.toml                # Python project config
-├── 🏗️ Makefile                      # Build automation
-└── 🔧 .gitignore                     # Git ignore rules
+├── 📋 requirements/                 # Dependencies (planned)
+├── 🚀 start_nexus.sh               # Start all services
+├── 🛑 stop_nexus.sh                # Stop all services
+├── 🔄 restart_nexus.sh             # Restart all services
+├── 📖 README.md                     # Project overview
+├── 📄 LICENSE                       # License information
+├── 🐍 pyproject.toml               # Python project config
+├── 🏗️ Makefile                     # Build automation
+├── 🔒 uv.lock                       # Dependency lock file
+└── 🔧 .gitignore                    # Git ignore rules
 ```
 
-## 🎯 **Key Improvements**
+## 🎯 **Current Best Practices Implementation**
 
 ### **1. Python Package Structure**
-- **`src/nexus/`**: Proper Python package layout
-- **`__init__.py`**: Package initialization files
-- **Clear separation**: Core, dashboard, profiles, integrations
+- **`src/nexus/`**: Proper Python package layout with `__init__.py` files
+- **Modular design**: CLI, core, dashboard, models, profiles, utils separation
+- **Clean imports**: Relative imports within the package structure
 
 ### **2. Configuration Management**
-- **`configs/`**: Centralized configuration
-- **Environment-specific**: Separate configs for different environments
-- **Validation**: Configuration validation and error handling
+- **`configs/`**: Well-organized configuration by category
+- **Environment-specific**: Separate environment configurations
+- **Integration configs**: Third-party tool configurations (BTT, KM, N8N, Raycast)
+- **Profile system**: 12 specialized workspace profiles
 
 ### **3. Testing & Quality**
-- **`tests/`**: Comprehensive test suite
-- **`tools/`**: Development and quality tools
-- **Pre-commit hooks**: Automated code quality checks
+- **`tests/`**: Organized test suite with unit and integration tests
+- **`pytest.ini`**: Proper test configuration
+- **Makefile targets**: Automated testing, formatting, and quality checks
+- **Python best practices**: Proper package structure and naming
 
 ### **4. Documentation**
-- **`docs/`**: Centralized documentation
-- **User guides**: Step-by-step instructions
-- **API docs**: Technical reference
+- **`docs/`**: Comprehensive documentation structure
+- **User guides**: Complete user documentation in `user-guides/`
+- **API docs**: Technical documentation in `api/`
+- **Developer guides**: Development documentation in `developer-guides/`
+- **Installation guides**: Setup instructions in `installation/`
 
-### **5. Infrastructure**
-- **`infra/`**: Infrastructure as code
-- **Docker support**: Containerization
-- **CI/CD ready**: Automated deployment
+### **5. Automation & Scripting**
+- **`scripts/`**: Organized by purpose (automation, install, maintenance, deployment, setup)
+- **`bin/`**: Executable binaries for CLI tools
+- **`tools/`**: Development utilities and integration tools
+- **Proper permissions**: All scripts have execute permissions
 
-## 🔄 **Migration Plan**
+### **6. Data Management**
+- **`data/`**: Structured data storage (cache, logs, models)
+- **`deployments/`**: Environment-specific deployment configurations
+- **Clean separation**: Data, configs, and code properly separated
 
-### **Phase 1: Restructure Core**
-1. Create new directory structure
-2. Move Python files to `src/nexus/`
-3. Reorganize configuration files
-4. Update import statements
+## 🔄 **Organizational Achievements**
 
-### **Phase 2: Enhance Functionality**
-1. Add proper Python packaging
-2. Implement configuration management
-3. Add testing framework
-4. Improve error handling
+### **✅ Completed Improvements**
+1. **Duplicate removal**: Eliminated duplicate `src/tests/` directory
+2. **Script consolidation**: Moved automation scripts to proper `scripts/automation/` location
+3. **Permission fixes**: All shell scripts now have proper execute permissions
+4. **Documentation updates**: README and project structure docs reflect current state
+5. **Directory structure**: Follows Python best practices and logical organization
 
-### **Phase 3: DevOps & Automation**
-1. Add Docker support
-2. Implement CI/CD pipeline
-3. Add monitoring and logging
-4. Performance optimization
+### **📊 Project Statistics**
+- **Total directories**: 25+ well-organized directories
+- **Scripts**: 50+ automation and utility scripts properly categorized
+- **Configuration files**: 30+ config files organized by function
+- **Documentation**: 25+ comprehensive documentation files
+- **Test files**: Unit and integration tests properly structured
+- **Python modules**: Clean package structure with proper imports
 
-## 📋 **Benefits of New Structure**
+## 🎯 **Benefits of Current Structure**
 
 ### **For Developers**
-- **Clear organization**: Easy to find and modify code
-- **Proper packaging**: Standard Python package structure
-- **Testing support**: Comprehensive test framework
-- **Code quality**: Automated linting and formatting
+- **Clear navigation**: Easy to locate and modify specific components
+- **Logical grouping**: Related functionality grouped together
+- **Standard practices**: Follows Python packaging conventions
+- **Modular design**: Easy to extend and maintain
 
 ### **For Users**
-- **Easy installation**: Standard Python package installation
-- **Clear documentation**: Comprehensive user guides
-- **Configuration**: Simple configuration management
-- **Updates**: Automated update process
+- **Comprehensive tooling**: 21 automation scripts for workspace management
+- **Rich configuration**: 12 workspace profiles with extensive customization
+- **Complete documentation**: User guides, installation, and API documentation
+- **Multiple interfaces**: CLI, GUI dashboard, and automation options
 
 ### **For Maintainers**
-- **Modular design**: Easy to add new features
-- **Version control**: Clear versioning strategy
-- **Dependency management**: Proper dependency tracking
-- **Deployment**: Automated deployment pipeline
+- **Scalable architecture**: Easy to add new features and integrations
+- **Quality assurance**: Testing framework and quality checks in place
+- **Deployment ready**: Environment-specific deployment configurations
+- **Integration support**: Extensive third-party tool integrations
 
-## 🚀 **Next Steps**
+## 🚀 **Quality Assurance Features**
 
-1. **Review structure**: Validate the new organization
-2. **Plan migration**: Create detailed migration plan
-3. **Execute changes**: Implement new structure
-4. **Test thoroughly**: Ensure everything works
-5. **Update documentation**: Reflect new structure
+- **Automated testing**: `make test` for comprehensive test suite
+- **Code formatting**: `make format` for consistent code style
+- **Linting**: `make lint` for code quality checks
+- **Type checking**: `make type-check` for static type analysis
+- **Pre-commit hooks**: Automated quality checks (planned)
+
+## 📋 **Integration Capabilities**
+
+- **15 BetterTouchTool gestures** for intuitive control
+- **18 Keyboard Maestro macros** for automation
+- **16 Apple Shortcuts** for native macOS integration
+- **N8N workflows** for advanced automation
+- **Raycast extension** for quick launcher integration
+- **YABAI window management** with AI optimization
+- **SKHD hotkey daemon** for global shortcuts
 
 ---
 
-*This structure follows Python packaging best practices and modern DevOps principles*
+*This project demonstrates enterprise-level organization with comprehensive automation capabilities, extensive documentation, and professional development practices.*
