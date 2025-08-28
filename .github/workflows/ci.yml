@@ -52,7 +52,7 @@ jobs:
         mypy src/nexus/ || true  # Allow mypy to fail for now
 
     - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v5
       with:
         file: ./coverage.xml
         flags: unittests
